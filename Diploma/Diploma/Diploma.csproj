@@ -46,8 +46,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BCrypt-Net-Next, Version=4.2.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
-      <HintPath>..\packages\BCrypt.Net-Next.4.2.0\lib\net48\BCrypt-Net-Next.dll</HintPath>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.1.28\lib\net461\Dapper.dll</HintPath>
@@ -175,45 +175,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependencyResolver.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Contractor\ContractorAreaRegistration.cs" />
+    <Compile Include="Areas\Contractor\Controllers\ContractorController.cs" />
+    <Compile Include="Areas\Engineer\EngineerAreaRegistration.cs" />
+    <Compile Include="Areas\Owner\OwnerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Core\Auth\AuthorizeRoleAttribute.cs" />
-    <Compile Include="Core\Database\DbConnectionFactory.cs" />
-    <Compile Include="Core\Enums\CompanyType.cs" />
-    <Compile Include="Core\Enums\DefectStatus.cs" />
-    <Compile Include="Core\Enums\UserRole.cs" />
+    <Compile Include="Controllers\HashController.cs" />
     <Compile Include="Data\DefectDbContext.cs" />
+    <Compile Include="Data\Interfaces\IUserRepository.cs" />
+    <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\AjaxFilterForm.cs" />
+    <Compile Include="HtmlHelpers\AuthorizeRoleAttribute.cs" />
+    <Compile Include="HtmlHelpers\BreadCrumb.cs" />
     <Compile Include="HtmlHelpers\BreadCrumbHelper.cs" />
-    <Compile Include="HtmlHelpers\BusinessCard.cs" />
     <Compile Include="HtmlHelpers\CustomInputHelpers.cs" />
     <Compile Include="HtmlHelpers\EnumExtensions.cs" />
     <Compile Include="HtmlHelpers\EnumMultiSelectFor.cs" />
     <Compile Include="HtmlHelpers\ModalPage.cs" />
-    <Compile Include="HtmlHelpers\PaginationHelper.cs" />
-    <Compile Include="HtmlHelpers\PermissionExtensions.cs" />
-    <Compile Include="HtmlHelpers\ReportHelper.cs" />
-    <Compile Include="HtmlHelpers\RolePermissions.cs" />
+    <Compile Include="HtmlHelpers\UserIdentityHelper.cs" />
+    <Compile Include="Models\BreadCrumb.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Defect.cs" />
     <Compile Include="Models\DefectComment.cs" />
     <Compile Include="Models\DefectMedia.cs" />
     <Compile Include="Models\DefectStatusHistory.cs" />
-    <Compile Include="Models\Domain\User.cs" />
+    <Compile Include="Models\DTOs\LoginResultDto.cs" />
+    <Compile Include="Models\DTOs\UserAuthDto.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\Object.cs" />
+    <Compile Include="Models\ConstructionObject.cs" />
     <Compile Include="Models\Premise.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewModels\Auth\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\Interfaces\IAuthService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Admin\breadcrumbs.css" />
@@ -236,9 +243,21 @@
     <Content Include="Content\css\modal.css" />
     <Content Include="Content\css\multiselect.css" />
     <Content Include="Content\css\table.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Owner\Views\web.config" />
+    <Content Include="Areas\Engineer\Views\web.config" />
+    <Content Include="Areas\Contractor\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Contractor\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Contractor\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Contractor\Views\Contractor\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\async-search.js" />
     <Content Include="Scripts\change-language.js" />
     <Content Include="Scripts\chart.js" />
@@ -272,15 +291,20 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Shared\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Area\Admin\" />
-    <Folder Include="Area\Contractor\" />
-    <Folder Include="Area\Engineer\" />
-    <Folder Include="Area\Owner\" />
-    <Folder Include="Data\Interface\" />
-    <Folder Include="Services\Interface\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Contractor\Data\" />
+    <Folder Include="Areas\Engineer\Controllers\" />
+    <Folder Include="Areas\Engineer\Data\" />
+    <Folder Include="Areas\Engineer\Views\Shared\" />
+    <Folder Include="Areas\Owner\Controllers\" />
+    <Folder Include="Areas\Owner\Data\" />
+    <Folder Include="Areas\Owner\Views\Shared\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Hash\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

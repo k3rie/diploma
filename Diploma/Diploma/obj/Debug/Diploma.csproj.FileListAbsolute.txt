@@ -51,13 +51,10 @@ C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\roslyn\vbc.rsp
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\roslyn\VBCSCompiler.exe
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Antlr3.Runtime.dll
-C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt-Net-Next.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Dapper.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.dll
-C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Security.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Newtonsoft.Json.dll
@@ -82,9 +79,7 @@ C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\WebGrease.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Dapper.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.xml
-C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Security.xml
-C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\Npgsql.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\System.Buffers.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\System.Memory.xml
@@ -109,3 +104,12 @@ C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.csproj.CoreCom
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.csproj.Up2Date
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.pdb
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework.dll
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework.SqlServer.dll
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework6.Npgsql.dll
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework.xml
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework.SqlServer.xml
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework6.Npgsql.xml
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.dll
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.pdb
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.xml

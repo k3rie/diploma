@@ -1,10 +1,10 @@
 ﻿
-using BackOffice.Web.Models;
+using Diploma.Models;
 using System.Collections.Generic;
 using System.Text;
 using System.Web.Mvc;
 
-namespace BackOffice.Web.HtmlHelpers
+namespace Diploma.HtmlHelpers
 {
     public static class HtmlHelpers
     {

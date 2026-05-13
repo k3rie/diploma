@@ -3,32 +3,112 @@
   "WorkspaceRootPath": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\contractor\\controllers\\contractorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\contractor\\controllers\\contractorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\contractor\\views\\contractor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\contractor\\views\\contractor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\hashcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\hashcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\data\\defectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\data\\defectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\app_start\\authconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\app_start\\authconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\premise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\premise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\viewmodels\\auth\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\viewmodels\\auth\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\constructionobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\constructionobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\admin\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\admin\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\admin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\admin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\app_start\\dependencyresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\app_start\\dependencyresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\htmlhelpers\\useridentityhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\htmlhelpers\\useridentityhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\contractor\\contractorarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\contractor\\contractorarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\engineer\\engineerarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\engineer\\engineerarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\areas\\owner\\ownerarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\areas\\owner\\ownerarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\models\\defectmedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\models\\defectmedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +118,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 19,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,46 +126,228 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Diploma\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Diploma\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ContractorController.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\Controllers\\ContractorController.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Contractor\\Controllers\\ContractorController.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\Controllers\\ContractorController.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Contractor\\Controllers\\ContractorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T19:34:43.572Z",
+              "WhenOpened": "2026-05-13T23:50:47.47Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
-              "RelativeDocumentMoniker": "Diploma\\Views\\Auth\\Login.cshtml",
-              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
-              "RelativeToolTip": "Diploma\\Views\\Auth\\Login.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAC4AAAAHAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\Views\\Contractor\\Index.cshtml",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Contractor\\Views\\Contractor\\Index.cshtml",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\Views\\Contractor\\Index.cshtml",
+              "RelativeToolTip": "Diploma\\Areas\\Contractor\\Views\\Contractor\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-13T19:18:49.89Z",
+              "WhenOpened": "2026-05-13T23:49:23.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HashController.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HashController.cs",
+              "RelativeDocumentMoniker": "Diploma\\Controllers\\HashController.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HashController.cs",
+              "RelativeToolTip": "Diploma\\Controllers\\HashController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T23:46:45.119Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Enums.cs",
+              "RelativeDocumentMoniker": "Diploma\\Models\\Enums.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Enums.cs",
+              "RelativeToolTip": "Diploma\\Models\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:39:00.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Premise.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Premise.cs",
+              "RelativeDocumentMoniker": "Diploma\\Models\\Premise.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Premise.cs",
+              "RelativeToolTip": "Diploma\\Models\\Premise.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:32:35.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Diploma\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwCwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T22:28:59.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "Diploma\\Views\\Auth\\Login.cshtml",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
+              "RelativeToolTip": "Diploma\\Views\\Auth\\Login.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAuwGIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T22:21:30.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DefectDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Data\\DefectDbContext.cs",
+              "RelativeDocumentMoniker": "Diploma\\Data\\DefectDbContext.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Data\\DefectDbContext.cs",
+              "RelativeToolTip": "Diploma\\Data\\DefectDbContext.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAswDAAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:18:17.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Web.config",
               "RelativeDocumentMoniker": "Diploma\\Web.config",
               "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Web.config",
               "RelativeToolTip": "Diploma\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-05-13T19:14:00.008Z",
+              "WhenOpened": "2026-05-13T22:13:09.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ConstructionObject.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\ConstructionObject.cs",
+              "RelativeDocumentMoniker": "Diploma\\Models\\ConstructionObject.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\ConstructionObject.cs",
+              "RelativeToolTip": "Diploma\\Models\\ConstructionObject.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:30:23.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Global.asax.cs",
+              "RelativeDocumentMoniker": "Diploma\\Global.asax.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Global.asax.cs",
+              "RelativeToolTip": "Diploma\\Global.asax.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:28:07.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AdminAreaRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:07:29.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Diploma\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Services\\UserService.cs",
+              "RelativeToolTip": "Diploma\\Services\\UserService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAwDUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:27:53.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Diploma\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Services\\AuthService.cs",
+              "RelativeToolTip": "Diploma\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAewAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:27:49.293Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Diploma\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Diploma\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:27:14.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Admin\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "Diploma\\Areas\\Admin\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T22:14:22.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:09:56.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "Diploma\\App_Start\\RouteConfig.cs",
@@ -98,41 +360,119 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Diploma\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Diploma\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAApwEoAAAAZAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\AuthController.cs*",
+              "RelativeToolTip": "Diploma\\Controllers\\AuthController.cs*",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAUwHkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T19:09:18.218Z",
+              "WhenOpened": "2026-05-13T22:12:47.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoginViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
-              "RelativeDocumentMoniker": "Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
-              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
-              "RelativeToolTip": "Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "DependencyResolver.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\DependencyResolver.cs",
+              "RelativeDocumentMoniker": "Diploma\\App_Start\\DependencyResolver.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\DependencyResolver.cs",
+              "RelativeToolTip": "Diploma\\App_Start\\DependencyResolver.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwC0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T19:08:34.551Z",
+              "WhenOpened": "2026-05-13T22:26:43.126Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthConfig.cs",
-              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\AuthConfig.cs",
-              "RelativeDocumentMoniker": "Diploma\\App_Start\\AuthConfig.cs",
-              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\AuthConfig.cs",
-              "RelativeToolTip": "Diploma\\App_Start\\AuthConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "DocumentIndex": 20,
+              "Title": "UserIdentityHelper.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\HtmlHelpers\\UserIdentityHelper.cs",
+              "RelativeDocumentMoniker": "Diploma\\HtmlHelpers\\UserIdentityHelper.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\HtmlHelpers\\UserIdentityHelper.cs",
+              "RelativeToolTip": "Diploma\\HtmlHelpers\\UserIdentityHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:34:28.289Z",
+              "WhenOpened": "2026-05-13T22:15:14.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Web.config",
+              "RelativeDocumentMoniker": "Diploma\\Views\\Web.config",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Web.config",
+              "RelativeToolTip": "Diploma\\Views\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-13T22:13:01.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ContractorAreaRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\ContractorAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Contractor\\ContractorAreaRegistration.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Contractor\\ContractorAreaRegistration.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Contractor\\ContractorAreaRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:08:43.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "EngineerAreaRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Engineer\\EngineerAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Engineer\\EngineerAreaRegistration.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Engineer\\EngineerAreaRegistration.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Engineer\\EngineerAreaRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:08:32.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "OwnerAreaRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Owner\\OwnerAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Diploma\\Areas\\Owner\\OwnerAreaRegistration.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Areas\\Owner\\OwnerAreaRegistration.cs",
+              "RelativeToolTip": "Diploma\\Areas\\Owner\\OwnerAreaRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T22:08:23.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Company.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Company.cs",
+              "RelativeDocumentMoniker": "Diploma\\Models\\Company.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\Company.cs",
+              "RelativeToolTip": "Diploma\\Models\\Company.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:27:18.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "DefectMedia.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\DefectMedia.cs",
+              "RelativeDocumentMoniker": "Diploma\\Models\\DefectMedia.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\DefectMedia.cs",
+              "RelativeToolTip": "Diploma\\Models\\DefectMedia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:16:45.75Z",
               "EditorCaption": ""
             }
           ]

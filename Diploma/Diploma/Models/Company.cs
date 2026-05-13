@@ -1,5 +1,4 @@
-﻿using Diploma.Core.Enums;
-using Diploma.Models.Domain;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +41,7 @@ namespace Diploma.Models
 
         // Навигационные свойства
         public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<Object> Objects { get; set; }
+        public virtual ICollection<ConstructionObject> Objects { get; set; }
         public virtual ICollection<Defect> Defects { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Diploma.Models
         [Required]
         public int Floor { get; set; }
 
-        [Column(TypeName = "numeric(10,2)")]
+        [Column(TypeName = "numeric")]
         public decimal? Area { get; set; }
 
         public int? OwnerId { get; set; }
@@ -33,7 +33,7 @@ namespace Diploma.Models
 
         // Навигационные свойства
         [ForeignKey("ObjectId")]
-        public virtual Object Object { get; set; }
+        public virtual ConstructionObject ConstructionObject { get; set; }
 
         [ForeignKey("OwnerId")]
         public virtual User Owner { get; set; }

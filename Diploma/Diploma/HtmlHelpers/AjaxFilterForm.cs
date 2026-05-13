@@ -7,7 +7,7 @@ using System.Web.WebPages.Html;
 using WebGrease.Css.Ast;
 using HtmlHelper = System.Web.Mvc.HtmlHelper;
 
-namespace BackOffice.Web.HtmlHelpers
+namespace Diploma.HtmlHelpers
 {
     public static class AjaxFilterFormHelper
     {

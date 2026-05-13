@@ -1,10 +1,8 @@
-﻿using Dapper;
-using Diploma.Core.Database;
-using Diploma.Core.Enums;
-using Diploma.Models.Domain;
-using Diploma.Models.ViewModels.Auth;
-using System;
-using System.Web.Helpers;
+﻿using Diploma.Helpers;
+using Diploma.Models;
+using Diploma.Services.Interfaces;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -12,84 +10,113 @@ namespace Diploma.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: /Auth/Login
-        [AllowAnonymous]
+        private readonly IAuthService _authService;
+        private readonly IUserService _userService;
+
+        public AuthController()
+        {
+            _authService = DependencyResolver.Current.GetService<IAuthService>();
+            _userService = DependencyResolver.Current.GetService<IUserService>();
+        }
+
+        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
+            // Если пользователь уже авторизован - перенаправляем в его Area
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "Dashboard");
+            {
+                var currentUser = UserIdentityHelper.GetCurrentUser();
+                if (currentUser != null)
+                {
+                    return RedirectToArea(currentUser.Role);
+                }
+                return RedirectToAction("Index", "Home");
+            }
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(new LoginViewModel());
+            return View();
         }
 
-        // POST: /Auth/Login
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginRequest model, string returnUrl)
         {
+            // Если пользователь уже авторизован - перенаправляем
+            if (User.Identity.IsAuthenticated)
+            {
+                var currentUser = UserIdentityHelper.GetCurrentUser();
+                if (currentUser != null)
+                {
+                    return RedirectToArea(currentUser.Role);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
             if (!ModelState.IsValid)
-                return View(model);
-
-            User user;
-            using (var db = DbConnectionFactory.Create())
             {
-                user = db.QueryFirstOrDefault<User>(
-                    @"SELECT ""Id"", ""UserName"", ""PasswordHash"", ""FullName"",
-                             ""Phone"", ""Email"", ""Role"", ""CompanyId"", ""IsActive""
-                      FROM ""Users""
-                      WHERE ""UserName"" = @UserName AND ""IsActive"" = TRUE",
-                    new { model.UserName });
-            }
-
-            if (user == null || !VerifyPassword(model.Password, user.PasswordHash))
-            {
-                ModelState.AddModelError("", "Неверный логин или пароль");
                 return View(model);
             }
 
-            // Пишем в куку: "userId|role"
-            var cookieValue = $"{user.Id}|{(int)user.Role}|{user.FullName}";
-            FormsAuthentication.SetAuthCookie(cookieValue, model.RememberMe);
+            var result = await _authService.AuthenticateAsync(model.Login, model.Password);
 
+            if (!result.Success)
+            {
+                ModelState.AddModelError("", result.ErrorMessage);
+                return View(model);
+            }
+
+            // Создаем ticket с данными пользователя
+            var userData = $"{result.User.Id}|{(int)result.User.Role}|{result.User.CompanyId}";
+
+            var ticket = new FormsAuthenticationTicket(
+                1,
+                result.User.UserName,
+                System.DateTime.Now,
+                model.RememberMe ? System.DateTime.Now.AddDays(30) : System.DateTime.Now.AddHours(8),
+                model.RememberMe,
+                userData,
+                FormsAuthentication.FormsCookiePath
+            );
+
+            var encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+            Response.Cookies.Add(authCookie);
+
+            // Перенаправление после входа
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
                 return Redirect(returnUrl);
+            }
 
-            return RedirectToDashboard(user.Role);
+            // Перенаправляем в Area пользователя
+            return RedirectToArea(result.User.Role);
         }
 
-        // POST: /Auth/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            Session.Abandon();
+            return RedirectToAction("Login", "Auth");
         }
 
-        // ── helpers ──────────────────────────────────────────────
-
-        private ActionResult RedirectToDashboard(UserRole role)
+        // Метод для перенаправления в Area по роли
+        private ActionResult RedirectToArea(UserRole role)
         {
             switch (role)
             {
-                case UserRole.Owner:
-                    return RedirectToAction("Index", "Owner");
-                case UserRole.DeveloperEngineer:
-                    return RedirectToAction("Index", "Engineer");
-                case UserRole.Contractor:
-                    return RedirectToAction("Index", "Contractor");
                 case UserRole.Admin:
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                case UserRole.Owner:
+                    return RedirectToAction("Index", "Owner", new { area = "Owner" });
+                case UserRole.DeveloperEngineer:
+                    return RedirectToAction("Index", "Engineer", new { area = "Engineer" });
+                case UserRole.Contractor:
+                    return RedirectToAction("Index", "Contractor", new { area = "Contractor" });
                 default:
                     return RedirectToAction("Index", "Home");
             }
-        }
-
-        private static bool VerifyPassword(string plain, string hash)
-        {
-            return BCrypt.Net.BCrypt.Verify(plain, hash);
         }
     }
 }

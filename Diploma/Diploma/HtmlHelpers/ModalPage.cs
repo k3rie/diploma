@@ -4,7 +4,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace BackOffice.Web.HtmlHelpers
+namespace Diploma.HtmlHelpers
 {
     public static class AjaxFormHelper
     {

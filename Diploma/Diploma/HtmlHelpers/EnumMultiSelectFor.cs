@@ -8,8 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Razor.Parser.SyntaxTree;
-
-namespace BackOffice.Web.HtmlHelpers
+namespace Diploma.HtmlHelpers
 {
     public static class EnumMultiSelectForHtmlHelper
     {
