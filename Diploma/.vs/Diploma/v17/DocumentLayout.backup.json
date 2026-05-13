@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|solutionrelative:diploma\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5DDDEFA6-35F6-47ED-BB80-41DC2BFB5DAE}|Diploma\\Diploma.csproj|c:\\users\\fepav\\desktop\\dickloma\\diploma\\diploma\\app_start\\authconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,6 +47,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Diploma\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Diploma\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:34:43.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "Diploma\\Views\\Auth\\Login.cshtml",
+              "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Views\\Auth\\Login.cshtml",
+              "RelativeToolTip": "Diploma\\Views\\Auth\\Login.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAC4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T19:18:49.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Web.config",
               "RelativeDocumentMoniker": "Diploma\\Web.config",
@@ -51,33 +85,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "Diploma\\App_Start\\RouteConfig.cs",
               "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\RouteConfig.cs",
               "RelativeToolTip": "Diploma\\App_Start\\RouteConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-13T19:11:35.927Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Diploma\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Diploma\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwFgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAApwEoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-13T19:09:18.218Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "Diploma\\Models\\ViewModels\\Auth\\LoginViewModel.cs",
@@ -90,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AuthConfig.cs",
               "DocumentMoniker": "C:\\Users\\fepav\\Desktop\\DICKLOMA\\Diploma\\Diploma\\App_Start\\AuthConfig.cs",
               "RelativeDocumentMoniker": "Diploma\\App_Start\\AuthConfig.cs",
