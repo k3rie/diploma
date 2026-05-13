@@ -1,0 +1,809 @@
+﻿.filter-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.filter-form input[type="text"] {
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search-btn, .filter-form .filter-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #007bff; /* Синий цвет */
+    border: 1px solid #007bff; /* Синяя окантовка */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+}
+.reset-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #ff0000; /* Красный цвет */
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+}
+
+
+.search-btn:hover, .filter-btn:hover {
+    background-color: #007bff; /* Синяя подсветка */
+    color: white;
+}
+
+.reset-btn:hover {
+    background-color: #ff0000; /* Красная подсветка */
+    color: white;
+}
+
+.edit-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #ff9800; /* Оранжевый цвет */
+    border: 1px solid #ff9800; /* Оранжевая окантовка */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+}
+
+    .edit-btn:hover {
+        background-color: #ff9800; /* Оранжевая подсветка */
+        color: white;
+    }
+
+
+.filter-btn i {
+    margin-right: 5px;
+}
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.create-btn {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: transparent;
+    color: green; /* Синий цвет */
+    border: 1px solid green; /* Синяя окантовка */
+    border-radius: 4px; /* Закругление */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .create-btn:hover {
+        background: green;
+        color: white;
+    }
+
+
+.report table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin-top: 0;
+}
+
+.report tbody {
+    display: table-row-group;
+}
+
+.report th {
+
+    padding: 10px;
+    cursor: pointer;
+}
+
+.report th, .report td {
+    text-align: left;
+    padding: 10px;
+}
+
+.report tr {
+    transition: all 0.2s;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .light-theme .report tr:hover {
+        background-color: #28a745;
+        color: white;
+        transform: scale(1.02);
+    }
+
+.dark-theme .report tr:hover {
+    background-color: #007aff;
+    color: white;
+    transform: scale(1.02);
+}
+
+.dark-theme .report th {
+    background: #333;
+    color: #f5f5f7;
+}
+
+.light-theme .report th {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.dark-theme .report tr {
+    background-color: #2c2c2e;
+    color: #f5f5f7;
+}
+.light-theme .report tr {
+    background-color: white;
+}
+
+    .dark-theme .report tr:hover {
+        background-color: #007aff;
+        color: white;
+    }
+.report span {
+    font-size: .85em;
+}
+.totals-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    font-family: sans-serif;
+}
+
+.totals-line {
+    display: flex;
+    width: 100%;
+}
+
+    .totals-line .label {
+        min-width: 120px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .totals-line .value {
+        min-width: 100px;
+        text-align: right;
+    }
+
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .pagination select {
+        padding: 5px;
+    }
+
+    .pagination-controls button {
+        margin: 1px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+.dark-theme .pagination-controls button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+}
+
+.light-theme .pagination-controls button:hover {
+    background: #28a745;
+    color: white;
+}
+
+.dark-theme .pagination-controls button:hover {
+    background: #007aff;
+    color: white;
+}
+
+.light-theme .pagination-controls button.active {
+    background: #28a745;
+    color: white;
+}
+
+.dark-theme .pagination-controls button.active {
+    background: #007aff;
+    color: white;
+} 
+.pagination-info {
+    font-size: 14px;
+
+}
+.light-theme .pagination-info {
+    color: #666;
+}
+.dark-theme .pagination-info {
+    color: #ABABAB;
+}
+/* Контейнер кастомного селекта */
+.custom-select-container {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+/* Кнопка селекта */
+.custom-select-button {
+    width: 100%;
+    padding: 10px;
+
+
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+    transition: background 0.3s ease;
+
+}
+
+    .custom-select-button:hover {
+        background: #e9ecef;
+    }
+
+/* Выпадающий список */
+.custom-select-dropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+}
+
+/* Показываем dropdown при активации */
+.custom-select-container.open .custom-select-dropdown {
+    display: block;
+}
+
+/* Стили для чекбоксов и их подписей */
+.custom-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+    .light-theme .custom-option:hover {
+        background: #f1f1f1;
+    }
+
+    .custom-option input {
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+/* Стили для темной темы */
+.dark-theme .custom-select-button {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+.light-theme .custom-select-button {
+    background: #ffff;
+    border: 1px solid #ccc;
+    color: #757575;
+}
+
+.dark-theme .custom-select-dropdown {
+    background: #444;
+    border: 1px solid #555;
+}
+.light-theme .custom-select-dropdown {
+    background: white;
+    border: 1px solid #ccc;
+}
+
+.dark-theme .custom-option {
+    color: white;
+}
+
+    .dark-theme .custom-option:hover {
+        background: #555;
+    }
+
+/* Скрываем стандартный чекбокс */
+#isBalance, #isActive {
+    display: none;
+}
+
+
+/* Контейнер для кастомного чекбокса */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    /* Создаем кастомный чекбокс */
+    .custom-checkbox span {
+        width: 40px;
+        height: 20px;
+
+        border-radius: 10px;
+        position: relative;
+        transition: background 0.3s ease;
+        margin-left: 10px;
+    }
+
+        /* Ползунок внутри чекбокса */
+        .custom-checkbox span::before {
+            content: "";
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+/* Если чекбокс отмечен */
+.light-theme #isBalance:checked + span,
+.light-theme #isActive:checked + span {
+    background: #28a745;
+}
+
+    #isBalance:checked + span::before,
+    #isActive:checked + span::before {
+        transform: translateX(20px);
+    }
+
+/* Темная тема */
+.dark-theme .custom-checkbox span {
+    background: #555;
+}
+.light-theme .custom-checkbox span {
+    background: #ccc;
+}
+
+.dark-theme #isBalance:checked + span,
+.dark-theme #isActive:checked + span {
+    background: #007aff;
+}
+
+.business-card {
+    width: 350px;
+}
+
+
+/* Светлая тема */
+body .daterangepicker .calendar-table {
+    border: none;
+}
+
+body.light-theme .daterangepicker {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+    body.light-theme .daterangepicker .calendar-table {
+        background: #fff;
+    }
+
+    body.light-theme .daterangepicker td,
+    body.light-theme .daterangepicker th {
+        color: #333;
+    }
+
+    body.light-theme .daterangepicker .ranges li {
+        color: #333;
+    }
+
+        body.light-theme .daterangepicker .ranges li:hover {
+            background: #28a745;
+            color: #fff;
+        }
+
+/* Темная тема */
+body.dark-theme .daterangepicker {
+    background: #2a2a3f;
+    border: 1px solid #444;
+    color: #fff;
+}
+
+    body.dark-theme .daterangepicker .calendar-table {
+        background: #2a2a3f;
+    }
+
+    body.dark-theme .daterangepicker td,
+    body.dark-theme .daterangepicker th {
+        color: #fff;
+    }
+
+    body.dark-theme .daterangepicker .ranges li {
+        color: #ccc;
+    }
+
+        body.dark-theme .daterangepicker .ranges li:hover {
+            background: #6C5CE7;
+            color: #fff;
+        }
+
+    /* Стиль для выбранного периода */
+    body.dark-theme .daterangepicker td.active,
+    body.dark-theme .daterangepicker td.active:hover {
+        background: #6C5CE7;
+        color: #fff;
+    }
+
+body.light-theme .daterangepicker td.active,
+body.light-theme .daterangepicker td.active:hover {
+    background: #28a745;
+    color: #fff;
+}
+
+/* Убираем белые рамки */
+body.dark-theme .daterangepicker {
+    border: 1px solid #444;
+    background: #2a2a3f;
+}
+
+    body.dark-theme .daterangepicker .calendar-table {
+        background: #2a2a3f;
+    }
+
+    body.dark-theme .daterangepicker td,
+    body.dark-theme .daterangepicker th {
+        color: #fff;
+        border: none;
+    }
+
+        /* Убираем белые квадраты */
+        body.dark-theme .daterangepicker td.available {
+            background: transparent !important;
+            color: #ccc;
+        }
+
+        body.dark-theme .daterangepicker td.off {
+            background: transparent !important;
+            color: #666;
+        }
+
+        body.dark-theme .daterangepicker td.in-range {
+            background: #3a3f5c !important;
+            color: #fff;
+        }
+
+        /* Активные даты */
+        body.dark-theme .daterangepicker td.active,
+        body.dark-theme .daterangepicker td.active:hover {
+            background: #6C5CE7 !important;
+            color: #fff;
+        }
+
+        /* Наведение */
+        body.dark-theme .daterangepicker td:hover {
+            background: #444 !important;
+            color: #fff;
+        }
+
+.empty {
+    text-align: center;
+    font-style: italic;
+}
+
+
+.table-container {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th,
+    .table td {
+        padding: 12px 16px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: middle;
+    }
+
+    .table th {
+        font-weight: 500;
+        color: var(--white);
+        font-size: 11px;
+        text-transform: capitalize;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s;
+    }
+
+    .table td {
+        font-size: 12px;
+        color: #8A94A6;
+    }
+
+    .table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+
+.table-header-blue {
+    background-color: var(--primary-blue) !important;
+}
+
+    .table-header-blue th {
+        color: var(--white) !important;
+        font-weight: 500;
+        padding: 12px 8px;
+        font-size: 11px;
+        border-bottom: none;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .table-header-blue th:hover {
+            background-color: var(--primary-blue-hover) !important;
+        }
+
+        .table-header-blue th .sort-icon {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 10px;
+        }
+
+        .table-header-blue th:hover .sort-icon {
+            opacity: 1;
+        }
+
+        .table-header-blue th.sort-asc .sort-icon {
+            opacity: 1;
+        }
+
+        .table-header-blue th.sort-desc .sort-icon {
+            opacity: 1;
+        }
+.row {
+    height: 60px;
+}
+.dark .table-container {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.dark .table th,
+.dark .table td {
+    border-bottom-color: var(--border-color);
+}
+.dark .table td {
+    color: #8A94A6;
+}
+
+.dark .table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+.table {
+    min-width: 800px;
+}
+
+
+.search-input {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px 8px 36px;
+    font-size: 13px;
+    color: var(--text-color);
+    background: var(--card-bg);
+    transition: border-color 0.2s;
+}
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+    }
+
+    .search-input::placeholder {
+        color: #999;
+    }
+
+.dark .search-container i {
+    color: var(--chart-label);
+}
+
+.dark .search-input {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+:root .search-input {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+    :root .search-input::placeholder {
+        color: #999;
+    }
+
+    :root .search-input:focus {
+        border-color: var(--primary-blue);
+    }
+
+.status-new {
+    background: rgba(59, 130, 246, 0.1); /* синий */
+    color: #3b82f6;
+}
+
+.dark .status-new {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.status-cancelled {
+    background: rgba(239, 68, 68, 0.1); /* красный */
+    color: #ef4444;
+}
+
+.dark .status-cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.status-approved {
+    background: rgba(34, 197, 94, 0.1); /* зелёный */
+    color: #22c55e;
+}
+
+.dark .status-approved {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.status-temporary {
+    background: rgba(250, 204, 21, 0.1); /* жёлтый */
+    color: #facc15;
+}
+
+.dark .status-temporary {
+    background: rgba(250, 204, 21, 0.15);
+    color: #facc15;
+}
+.status-inprocess {
+    background: rgba(168, 85, 247, 0.1); /* фиолетовый */
+    color: #a855f7;
+}
+
+.dark .status-inprocess {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+}
+
+.status-accepted {
+    background: rgba(34, 197, 94, 0.1); /* зелёный */
+    color: #22c55e;
+}
+
+.dark .status-accepted {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+.status-rejected {
+    background: rgba(239, 68, 68, 0.1); /* красный */
+    color: #ef4444;
+}
+
+.dark .status-rejected {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+}
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}
+
+/* ===== Optional Filter Styles ===== */
+.filter-optional {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.filter-label {
+    font-size: 12px;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.filter-separator {
+    flex: 1;
+    border-bottom: 1px dashed var(--border-color);
+    min-width: 10px;
+}
+
+.apply-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: 1px solid var(--primary-blue);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.apply-btn:hover {
+    background-color: var(--primary-blue-hover);
+    border-color: var(--primary-blue-hover);
+}
+
+.clear-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    background-color: transparent;
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clear-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}

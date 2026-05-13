@@ -1,0 +1,210 @@
+﻿.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    gap: 10px;
+    background-color: var(--topbar-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.section-info h2 {
+    font-size: 16px;
+}
+
+.info-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
+    gap: 10px;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.info-item {
+    gap: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+    .info-item .label {
+        align-items: center;
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+
+    .info-item .value {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    /* Стили для комментариев */
+    .info-item.comment-item, .info-item.comment-item-high {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+        .info-item.comment-item .label, .info-item.comment-item-high .label {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Режим просмотра */
+        .info-item.comment-item .comment-display, .info-item.comment-item-high .comment-display {
+            width: 100%;
+            word-wrap: break-word;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+            .info-item.comment-item .comment-display.empty, .info-item.comment-item-high .comment-item.empty {
+                color: var(--text-secondary);
+                opacity: 0.7;
+                font-style: italic;
+            }
+
+        /* Режим редактирования */
+        .info-item.comment-item textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+        }
+        .info-item.comment-item-high textarea {
+            width: 100%;
+            height: 350px;
+            padding: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+        }
+.webkit-inline-box {
+    display: -webkit-inline-box;
+}
+
+@media (max-width: 1500px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 1150px) {
+    .info-grid,
+    .info-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Styles for text inputs */
+    .info-item input[type="text"],
+    .info-item input[type="email"],
+    .info-item input[type="password"],
+    .info-item input[type="number"],
+    .info-item input[type="datetime-local"],
+    .info-item select {
+        max-width: 250px;
+        padding: 6px;
+        background-color: var(--topbar-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        color: var(--text-color);
+    }
+
+/* Focus state for inputs */
+.info-item input:focus,
+.info-item select:focus,
+.info-item textarea:focus {
+    outline: none;
+}
+
+/* Checkbox styling */
+.info-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    accent-color: var(--button-bg);
+}
+
+/* Validation messages */
+.field-validation-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Submit button styling */
+.form-actions {
+    margin: 15px;
+    gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.form-actions-sticky {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px;
+    margin-top:20px;
+    background: var(--card-bg); 
+    border-top: 1px solid var(--border-color);
+    z-index: 10;
+}
+
+.section-menu {
+    display: flex;
+    justify-content: space-between;
+}
+.section-button{
+    justify-content:center;
+    align-content:center;
+    margin-top:20px;
+}
+.section-menu .section-button {
+    all:unset;
+    justify-content: center;
+    align-content: center;
+}
+/* Гарантируем видимость и корректное отображение таблицы */
+.traders-table-container {
+    width: 100%;
+    min-height: 200px;
+    margin-top: 10px;
+    overflow: auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.dark-theme .traders-table-container {
+    border-color: #444;
+}
+
+/* Убедимся, что таблица всегда имеет минимальный размер */
+.traders-table {
+    min-width: 100%;
+    min-height: 100px;
+}
+
+    /* Стили для выделенной строки */
+    .traders-table tr.selected {
+        background-color: #28a745;
+        color: white;
+    }

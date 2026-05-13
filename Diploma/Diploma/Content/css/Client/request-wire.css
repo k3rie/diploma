@@ -1,0 +1,315 @@
+/* PositionTrader specific styles - extends base.css */
+
+/* ===== Lucide Icons ===== */
+.lucide {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.2;
+}
+
+.lucide-animated {
+    transition: transform 0.9s ease, stroke 0.9s ease;
+}
+
+.icon-left {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.2;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* ===== Layout ===== */
+.layout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ===== Topbar ===== */
+.topbar {
+    background-color: var(--topbar-bg);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== Icons ===== */
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: var(--menu-hover-bg);
+    color: var(--menu-hover-color);
+}
+
+.icon-button:hover .icon {
+    color: var(--menu-hover-color);
+}
+
+.icon-button:hover .lucide-animated {
+    transform: scale(1.2) rotate(10deg);
+    stroke: #3498db;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: var(--icon-color);
+}
+
+/* ===== Text ===== */
+p {
+    color: var(--chart-label);
+    font-size: small;
+}
+
+.text-danger {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+
+.field-validation-error {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+
+/* ===== Required Field ===== */
+.required-field::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+/* ===== Form Controls ===== */
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: var(--bg-color);
+    cursor: not-allowed;
+}
+
+.form-control.input-validation-error {
+    border-color: var(--danger-color);
+}
+
+/* ===== Separator ===== */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: var(--button-bg);
+}
+
+/* ===== Header ===== */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.welcome-text {
+    max-width: 40%;
+    min-width: 250px;
+}
+
+.welcome-text h1 {
+    font-size: 28px;
+    margin: 0 0 10px;
+    color: var(--text-color);
+}
+
+.welcome-text p {
+    font-size: 16px;
+    color: var(--chart-label);
+    margin: 0;
+}
+
+/* ===== Cards ===== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card .label {
+    display: block;
+    font-size: 14px;
+    color: var(--chart-label);
+    margin-bottom: 8px;
+}
+
+.card .value {
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+/* ===== Form ===== */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+/* ===== Input Wrapper ===== */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--chart-label);
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+/* ===== Method Details ===== */
+.method-details {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.method-details h3 {
+    font-size: 18px;
+    color: var(--text-color);
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+/* ===== Modal Actions ===== */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.dark .form-control,
+.dark .form-group input,
+.dark .form-group select,
+.dark .input-wrapper input,
+.dark .input-wrapper select {
+    background-color: var(--topbar-bg);
+    border-color: var(--border-color);
+}
+
+.dark .method-details {
+    background-color: var(--topbar-bg);
+}

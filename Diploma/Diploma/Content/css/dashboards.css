@@ -1,0 +1,127 @@
+﻿
+
+.section h2 {
+    font-size: 22px;
+    border-left: 5px solid var(--primary-blue);
+    padding-left: 12px;
+    margin-bottom: 20px;
+    color: var(--primary-blue);
+}
+
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.feature {
+    max-width: fit-content;
+    overflow: hidden;
+    flex: 1 1 340px;
+    background: var(--card-bg);
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    padding: 25px 30px;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 2px 4px var(--shadow-color), 0 6px 12px var(--shadow-color-strong), 0 0 1px var(--shadow-inset) inset;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .feature::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--primary-blue);
+        opacity: 0.6;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px var(--shadow-color-strong), 0 0 1px var(--shadow-inset) inset;
+    }
+
+.feature-icon {
+    display: flex;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    align-content: center;
+    margin: 0;
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+p {
+    all: unset;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.feature p {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 18px;
+}
+
+.feature-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+    .feature-links a {
+        flex: 0 0 auto;
+        text-decoration: none;
+    }
+
+
+
+.dashboard-table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+    .dashboard-table thead {
+        background: var(--topbar-bg);
+    }
+
+    .dashboard-table th,
+    .dashboard-table td {
+        padding: 6px 6px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .dashboard-table th {
+        color: var(--chart-label);
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+.icon-link:hover .lucide-animated {
+    transform: scale(1.2) rotate(10deg);
+    stroke: #3498db;
+}

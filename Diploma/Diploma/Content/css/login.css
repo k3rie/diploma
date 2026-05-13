@@ -1,0 +1,687 @@
+﻿:root {
+    --bg-gradient-start: #5BA4E8;
+    --bg-gradient-end: #3D7EC0;
+    --grid-color: rgba(0, 0, 0, 0.08);
+    --glow-color: rgba(255, 255, 255, 0.25);
+    --mountain-color-start: rgb(11 64 127 / 50%);
+    --chart-line-color: #2E9AFE;
+    --card-bg: #FAFAFA;
+    --card-shadow: rgba(0, 0, 0, 0.15);
+    --text-primary: #2C3E50;
+    --text-secondary: #5A5A5A;
+    --input-bg: #FFFFFF;
+    --input-border: #E0E0E0;
+    --input-placeholder: #B0B0B0;
+    --input-focus-border: #4A90E2;
+    --input-focus-shadow: rgba(74, 144, 226, 0.1);
+    --link-color: #4A90E2;
+    --button-bg: #4A90E2;
+    --button-hover: #3D7EC0;
+    --button-shadow: rgba(74, 144, 226, 0.3);
+    --validation-bg: #fff4f4;
+    --validation-text: #c0392b;
+    --validation-shadow: rgba(231, 76, 60, 0.25);
+    --validation-border: #e74c3c;
+}
+
+.dark {
+    --bg-gradient-start: #1a2332;
+    --bg-gradient-end: #0f1419;
+    --grid-color: rgba(74, 144, 226, 0.08);
+    --glow-color: rgba(74, 144, 226, 0.15);
+    --mountain-color-start: rgb(45 90 140 / 50%);
+    --chart-line-color: #4A90E2;
+    --card-bg: rgba(26, 35, 50, 0.95);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --text-primary: #FFFFFF;
+    --text-secondary: #8b95a8;
+    --input-bg: rgba(15, 20, 25, 0.6);
+    --input-border: rgba(74, 144, 226, 0.3);
+    --input-placeholder: #6b7280;
+    --input-focus-border: #4A90E2;
+    --input-focus-shadow: rgba(74, 144, 226, 0.2);
+    --link-color: #4A90E2;
+    --button-bg: linear-gradient(135deg, #4a90e2, #2563eb);
+    --button-hover: linear-gradient(135deg, #5da5f5, #3b76f8);
+    --button-shadow: rgba(74, 144, 226, 0.4);
+    --validation-bg: #2b1b1b;
+    --validation-text: #ffb3b3;
+    --validation-shadow: rgba(255, 90, 90, 0.2);
+    --validation-border: #ff6b6b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow: hidden;
+}
+
+.background {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    /* Блик в правом верхнем углу */
+    .background::before {
+        content: '';
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 50%;
+        height: 60%;
+        background: radial-gradient(ellipse at center, var(--glow-color) 0%, rgba(255, 255, 255, 0.1) 30%, transparent 70%);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+/* Сетка на фоне */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Линии графика - передний план */
+.mountain-layer-1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon( 0% 100%, 3% 100%, 6% 100%, 9% 100%, 12% 90%, 15% 91%, 18% 90%, 21% 75%, 24% 73%, 27% 70%, 30% 75%, 33% 72%, 36% 75%, 39% 76%, 42% 60%, 45% 62%, 48% 67%, 51% 50%, 54% 50%, 57% 43%, 60% 45%, 63% 47%, 66% 32%, 69% 35%, 72% 30%, 75% 20%, 78% 23%, 81% 25%, 84% 21%, 87% 28%, 90% 30%, 93% 30%, 96% 40%, 100% 55%, 100% 100%, 0% 100% ); background: var(--mountain-color-start);
+    z-index: 2;
+}
+
+/* Линия графика - синяя линия */
+.chart-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+    .chart-line svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .chart-line polyline {
+        stroke: var(--chart-line-color);
+    }
+
+/* Японские свечи */
+.candlesticks {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    z-index: 5;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    padding: 0 10%;
+}
+
+.candle {
+    position: relative;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 8px;
+}
+
+.wick {
+    width: 2px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.candle-body {
+    width: 100%;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.candle.green .candle-body {
+    background: rgba(82, 196, 26, 0.4);
+    border-color: rgba(82, 196, 26, 0.6);
+}
+
+.candle.red .candle-body {
+    background: rgba(245, 34, 45, 0.4);
+    border-color: rgba(245, 34, 45, 0.6);
+}
+
+/* Индивидуальные свечи */
+.candle:nth-child(1) {
+    height: 180px;
+}
+
+    .candle:nth-child(1) .wick:first-child {
+        height: 15px;
+    }
+
+    .candle:nth-child(1) .candle-body {
+        height: 50px;
+    }
+
+    .candle:nth-child(1) .wick:last-child {
+        height: 20px;
+    }
+
+.candle:nth-child(2) {
+    height: 220px;
+}
+
+    .candle:nth-child(2) .wick:first-child {
+        height: 25px;
+    }
+
+    .candle:nth-child(2) .candle-body {
+        height: 70px;
+    }
+
+    .candle:nth-child(2) .wick:last-child {
+        height: 15px;
+    }
+
+.candle:nth-child(3) {
+    height: 160px;
+}
+
+    .candle:nth-child(3) .wick:first-child {
+        height: 20px;
+    }
+
+    .candle:nth-child(3) .candle-body {
+        height: 45px;
+    }
+
+    .candle:nth-child(3) .wick:last-child {
+        height: 25px;
+    }
+
+.candle:nth-child(4) {
+    height: 250px;
+}
+
+    .candle:nth-child(4) .wick:first-child {
+        height: 30px;
+    }
+
+    .candle:nth-child(4) .candle-body {
+        height: 80px;
+    }
+
+    .candle:nth-child(4) .wick:last-child {
+        height: 20px;
+    }
+
+.candle:nth-child(5) {
+    height: 190px;
+}
+
+    .candle:nth-child(5) .wick:first-child {
+        height: 18px;
+    }
+
+    .candle:nth-child(5) .candle-body {
+        height: 60px;
+    }
+
+    .candle:nth-child(5) .wick:last-child {
+        height: 22px;
+    }
+
+.candle:nth-child(6) {
+    height: 210px;
+}
+
+    .candle:nth-child(6) .wick:first-child {
+        height: 22px;
+    }
+
+    .candle:nth-child(6) .candle-body {
+        height: 65px;
+    }
+
+    .candle:nth-child(6) .wick:last-child {
+        height: 18px;
+    }
+
+.candle:nth-child(7) {
+    height: 170px;
+}
+
+    .candle:nth-child(7) .wick:first-child {
+        height: 15px;
+    }
+
+    .candle:nth-child(7) .candle-body {
+        height: 55px;
+    }
+
+    .candle:nth-child(7) .wick:last-child {
+        height: 20px;
+    }
+
+/* Форма входа */
+.login-card {
+    position: relative;
+    z-index: 10;
+    background: var(--card-bg);
+    padding: 48px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px var(--card-shadow);
+    width: 90%;
+    max-width: 400px;
+}
+
+.dark .login-card {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C3E50;
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: var(--input-focus-border);
+        box-shadow: 0 0 0 3px var(--input-focus-shadow);
+    }
+/* Обёртка для поля и иконки */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    /* Поле с отступом справа под глаз */
+    .input-wrapper input[type="password"],
+    .input-wrapper input[type="text"] {
+        width: 100%;
+        padding-right: 40px; /* место под иконку 👁 */
+    }
+
+/* Иконка-глаз внутри поля */
+.password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--input-placeholder);
+    opacity: 0.7;
+    transition: all 0.25s ease;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .password-toggle:hover {
+        color: var(--link-color);
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+/* Темная тема */
+.dark .password-toggle {
+    color: var(--text-secondary);
+}
+
+
+input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.remember-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+    .remember-checkbox input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        accent-color: var(--link-color);
+        margin-bottom: 8px;
+    }
+
+.forgot-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+    .forgot-link:hover {
+        text-decoration: underline;
+    }
+
+.signin-button {
+    width: 100%;
+    padding: 14px;
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+    .signin-button:hover {
+        background: var(--button-hover);
+    }
+
+.dark .signin-button {
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+    .dark .signin-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px var(--button-shadow);
+    }
+
+.signin-button:active {
+    transform: translateY(1px);
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+    .signup-text a {
+        color: var(--link-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+
+/* Хедер с переключателем темы и языка */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    z-index: 20;
+}
+
+.logo-header {
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.logo-section {
+    height: 150px;
+    overflow: hidden;
+}
+
+    .logo-section img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+    }
+.logo-section .company-logo {
+    content: url('/Content/images/CompanyLogo.png');
+}
+
+body.dark .logo-section .company-logo {
+    content: url('/Content/images/CompanyLogoDark.png');
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+.dark .theme-toggle {
+    background: rgba(74, 144, 226, 0.2);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.dark .theme-toggle:hover {
+    background: rgba(74, 144, 226, 0.3);
+}
+
+.language-selector {
+    position: relative;
+}
+
+.language-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.dark .language-button {
+    background: rgba(74, 144, 226, 0.2);
+}
+
+.language-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.dark .language-button:hover {
+    background: rgba(74, 144, 226, 0.3);
+}
+
+.language-flag {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 10px 40px var(--card-shadow);
+    min-width: 150px;
+    overflow: hidden;
+    display: none;
+}
+
+.dark .language-dropdown {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.language-dropdown.active {
+    display: block;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+    .language-option:hover {
+        background: var(--validation-text);
+    }
+
+    .language-option.active {
+        background: var(--validation-text);
+        font-weight: 600;
+    }
+
+.validation-summary,
+.validation-summary-errors,
+.field-validation-error {
+    display: block;
+    background-color: var(--validation-bg);
+    color: var(--validation-text);
+    padding: 10px 15px;
+    margin: 10px auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px var(--validation-shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+    /* список внутри validation-summary-errors */
+    .validation-summary-errors ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .validation-summary-errors li {
+        margin: 0;
+        padding: 0;
+    }
+
+/* скрываем валидные */
+.field-validation-valid {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,41 @@
+﻿/* Стили для хлебных крошек */
+.breadcrumbs {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 0px 10px;
+    z-index: 999;
+    font-size: 14px;
+}
+
+.dark-theme .breadcrumbs {
+    background: rgba(29, 29, 31, 0.9);
+    color: #ABABAB;
+}
+.light-theme .breadcrumbs {
+    background: rgba(255, 255, 255, 0.9);
+    color: #666;
+}
+
+.breadcrumbs span {
+    margin: 0 5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+    .breadcrumbs span:hover {
+        color: #007aff;
+    }
+
+.breadcrumbs .separator {
+    margin: 0 5px;
+}
+
+.dark-theme .breadcrumbs .separator {
+    color: #ABABAB;
+}
+.light-theme .breadcrumbs .separator {
+    color: #666;
+}
+

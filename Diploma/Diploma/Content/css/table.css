@@ -1,0 +1,184 @@
+.report table {
+    text-align: right;
+}
+
+.info table {
+    text-align: center;
+}
+
+.table {
+    overflow-x: auto;
+}
+
+    .table table {
+        width: 100%;
+        background: var(--card-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border-collapse: collapse;
+    }
+
+        .table table th,
+        .table table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .table table th {
+            font-weight: 500;
+            color: var(--white);
+            font-size: 11px;
+            text-transform: capitalize;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .table table td {
+            font-size: 12px;
+        }
+
+        .table table tbody tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        .table table tbody td {
+            padding: 4px 8px;
+        }
+        .table table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table table tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .table table thead {
+            background-color: var(--primary-blue) !important;
+        }
+
+            .table table thead th:hover {
+                background-color: var(--primary-blue-hover) !important;
+            }
+
+            .table table thead th .sort-icon {
+                position: absolute;
+                right: 4px;
+                top: 50%;
+                transform: translateY(-50%);
+                opacity: 0;
+                transition: opacity 0.2s;
+                font-size: 10px;
+            }
+
+            .table table thead th:hover .sort-icon {
+                opacity: 1;
+            }
+
+            .table table thead th.sort-asc .sort-icon {
+                opacity: 1;
+            }
+
+            .table table thead th.sort-desc .sort-icon {
+                opacity: 1;
+            }
+
+        .table table tfoot {
+            background-color: var(--primary-blue) !important;
+            font-weight: 500;
+            color: var(--white);
+            font-size: 11px;
+            text-transform: capitalize;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .table table span {
+            font-size: 0.9em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+.text-right {
+    text-align: right !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.pagination-container {
+    width: 100%;
+}
+
+.pagination-btn,
+.pagination-select {
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    padding: 3px 6px;
+    margin: 0 2px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+    .pagination-btn:hover:not(:disabled),
+    .pagination-select:hover {
+        background-color: var(--white);
+        color: var(--primary-blue);
+    }
+
+    .pagination-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .pagination-btn.active {
+        background-color: var(--white);
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+.pagination-select {
+    border-radius: 3px;
+}
+
+.pagination-info {
+    font-size: 11px;
+}
+
+.pagination-dots {
+    margin: 0 3px;
+}
+
+.filter-form label {
+    font-size: 13px;
+    color: var(--chart-label);
+}
+
+.table table td.actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.table table td.actions .filter-btn {
+    white-space: nowrap;
+}
+
+.empty {
+    text-align: center;
+    font-style: italic;
+}
+tr.active-row {
+    background-color: #01ff3b42 !important;
+}
