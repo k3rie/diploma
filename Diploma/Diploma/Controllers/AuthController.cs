@@ -22,7 +22,6 @@ namespace Diploma.Controllers
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
-            // Если пользователь уже авторизован - перенаправляем в его Area
             if (User.Identity.IsAuthenticated)
             {
                 var currentUser = UserIdentityHelper.GetCurrentUser();
@@ -109,7 +108,7 @@ namespace Diploma.Controllers
                 case UserRole.Admin:
                     return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 case UserRole.Owner:
-                    return RedirectToAction("Index", "Owner", new { area = "Owner" });
+                    return RedirectToAction("Defects", "Owner", new { area = "Owner" });
                 case UserRole.DeveloperEngineer:
                     return RedirectToAction("Index", "Engineer", new { area = "Engineer" });
                 case UserRole.Contractor:

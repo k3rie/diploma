@@ -1,0 +1,376 @@
+﻿@using Diploma.Models
+@using Diploma.HtmlHelpers;
+@using Diploma.Resources
+@using Diploma.Helpers
+
+@{
+    var currentUser = UserIdentityHelper.GetCurrentUser();
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<script>
+    let modalCount = 0;
+
+    function openModal(url, data = null) {
+        modalCount++;
+        const modalId = `modal-window-${modalCount}`;
+        const contentId = `modal-content-${modalCount}`;
+        $('#loader').show();
+        const modalHTML = `
+            <div id="${modalId}" class="modal-overlay" style="z-index:${1000 + modalCount}">
+                <div class="modal">
+                    <div class="modal-header">
+                        <i data-lucide="x" class="modal-close" onclick="closeModal('${modalId}')"></i>
+                    </div>
+                    <div id="${contentId}" class="modal-body">
+                        <div class="modal-loader">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: data,
+            traditional: true,
+            success: function (response) {
+                $(`#${contentId}`).html(response);
+                lucide.createIcons();
+                $('#loader').hide();
+            },
+            error: function () {
+                $(`#${contentId}`).html(`<p style="color:red">Load error!</p>`);
+                $('#loader').hide();
+            }
+        });
+    }
+
+    function openModalNotUrl() {
+        modalCount++;
+        const modalId = `modal-window-${modalCount}`;
+        const contentId = `modal-content-${modalCount}`;
+        $('#loader').show();
+        const modalHTML = `
+          <div id="${modalId}" class="modal-overlay" style="z-index:${1000 + modalCount}">
+              <div class="modal">
+                  <div class="modal-header">
+                      <i data-lucide="x" class="modal-close" onclick="closeModal('${modalId}')"></i>
+                  </div>
+                  <div id="${contentId}" class="modal-body">
+                      <div class="modal-loader">Loading...</div>
+                  </div>
+              </div>
+          </div>
+      `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+        return modalId;
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.remove();
+        }
+        if (document.querySelectorAll('.modal-overlay').length === 0) {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal(e.target.id);
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            const modals = document.querySelectorAll('.modal-overlay');
+            if (modals.length > 0) {
+                closeModal(modals[modals.length - 1].id);
+            }
+        }
+    });
+
+    function closeLastModal() {
+        if (modalCount > 0) {
+            const lastModalId = `modal-window-${modalCount}`;
+            closeModal(lastModalId);
+        }
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Owner Panel</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="~/Content/css/base.css" rel="stylesheet">
+    <link href="~/Content/css/modal.css" rel="stylesheet">
+    <link href="~/Content/css/details.css" rel="stylesheet">
+    <link href="~/Content/css/multiselect.css" rel="stylesheet">
+    <link href="~/Content/css/table.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="~/Scripts/multiselect.js"></script>
+    <script src="~/Scripts/change-language.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+
+<body class="@(ViewBag.Theme == "dark" ? "dark" : "")">
+    <div class="layout">
+        <header class="topbar">
+            <div class="topbar-left">
+                <img src="@Url.Content("~/Content/images/logomgsu.svg")" alt="Logo" class="logo">
+            </div>
+            <div class="topbar-right">
+                <div class="icon-button" onclick="toggleTheme()">
+                    <i data-lucide="moon" class="icon"></i>
+                </div>
+
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-text">
+                            <div class="role">@Localization.Owner</div>
+                            <div class="username">@(currentUser != null ? User.Identity.Name : Localization.Test)</div>
+                        </div>
+                        <div class="icon-button" onclick="event.stopPropagation(); userToggle('dropdownMenu')">
+                            <i data-lucide="chevron-down" class="icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-menu" id="dropdownMenu" onclick="userToggle('dropdownMenu')">
+                        @using (Html.BeginForm("Logout", "Auth", new { area = "" }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="dropdown-item" style="border: none; background: none; width: 100%; text-align: left; cursor: pointer;">
+                                <i data-lucide="log-out"></i> @Localization.Logout
+                            </button>
+                        }
+
+                        <div class="dropdown-item lang-parent" id="currentLang" onclick="toggleLangDropdown(event)">
+                            <img id="currentLangFlag" src="https://flagcdn.com/gb.svg" width="16" />
+                            <span id="currentLangText">English</span>
+                            <i data-lucide="chevron-right" class="icon"></i>
+                        </div>
+
+                        <div class="lang-submenu" id="langDropdown">
+                            <div class="dropdown-item" onclick="changeLanguage('en')">
+                                <img src="https://flagcdn.com/gb.svg" width="16"> English
+                            </div>
+                            <div class="dropdown-item" onclick="changeLanguage('ru')">
+                                <img src="https://flagcdn.com/ru.svg" width="16"> Русский
+                            </div>
+                            <div class="dropdown-item" onclick="changeLanguage('de')">
+                                <img src="https://flagcdn.com/de.svg" width="16"> Deutsch
+                            </div>
+                            <div class="dropdown-item" onclick="changeLanguage('es')">
+                                <img src="https://flagcdn.com/es.svg" width="16"> Español
+                            </div>
+                            <div class="dropdown-item" onclick="changeLanguage('ko')">
+                                <img src="https://flagcdn.com/kr.svg" width="16"> 한국어
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main">
+            <aside class="sidebar @(ViewBag.SidebarState == "compact" ? "compact" : "")">
+                <nav class="menu">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" class="menu-link" id="menu-toggle" onclick="toggleMenu()">
+                                <i data-lucide="@(ViewBag.SidebarState == "expanded" ? "x" : "panel-left")" id="menu-toggle-icon"></i>
+                                <span class="menu-text">@Localization.Menu</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h3 class="menu-title">@Localization.Actions</h3>
+                    <ul>
+                        <li class="@(currentAction == "Index" && currentController == "Owner" ? "active" : "")">
+                            <a href="@Url.Action("Index", "Owner", new { area = "Owner" })">
+                                <i data-lucide="layout-dashboard"></i>
+                                <span class="menu-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="@(currentAction == "MyPremises" ? "active" : "")">
+                            <a href="@Url.Action("MyPremises", "Owner", new { area = "Owner" })">
+                                <i data-lucide="building"></i>
+                                <span class="menu-text">My Premises</span>
+                            </a>
+                        </li>
+                        <li class="@(currentAction == "Defects" || currentAction == "CreateDefect" || currentAction == "DefectDetails" || currentAction == "EditDefect" ? "active" : "")">
+                            <a href="@Url.Action("Defects", "Owner", new { area = "Owner" })">
+                                <i data-lucide="alert-triangle"></i>
+                                <span class="menu-text">My Defects</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h3 class="menu-title">Reports</h3>
+                    <ul>
+                        <li class="@(currentAction == "Chart" ? "active" : "")">
+                            <a href="@Url.Action("Chart", "Home", new { area = "" })">
+                                <i data-lucide="pie-chart"></i>
+                                <span class="menu-text">@Localization.Chart</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <section class="content" id="main-content">
+                @Html.BreadCrumbHelper((List<Diploma.Models.BreadCrumb>)ViewBag.BreadCrumbs)
+
+                @RenderBody()
+            </section>
+
+            <div class="cssload-overlay" id="loader" style="display:none;">
+                <div class="cssload-wrapper">
+                    <div class="cssload-square"></div>
+                    <div class="cssload-square"></div>
+                    <div class="cssload-square"></div>
+                    <div class="cssload-square"></div>
+                    <div class="cssload-square"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script>
+    function userToggle(menuId) {
+        const menu = document.getElementById(menuId);
+        document.querySelectorAll('.dropdown-menu').forEach(m => {
+            if (m.id !== menuId) m.style.display = 'none';
+        });
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function (event) {
+        const dropdown = document.querySelector('.user-dropdown');
+        const isClickInside = dropdown.contains(event.target);
+        if (!isClickInside) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+        }
+    });
+
+    function toggleLangDropdown(e) {
+        e.stopPropagation();
+        const dropdown = document.getElementById('langDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons({
+            attrs: {
+                'stroke-width': 1,
+                'class': 'lucide-animated'
+            }
+        });
+    });
+
+    function changeLanguage(selectedLang) {
+        document.cookie = `preferredLanguage=${selectedLang}; path=/; max-age=31536000`;
+        location.reload();
+    }
+
+    function toggleMenu() {
+        var sidebar = document.querySelector('.sidebar');
+        var icon = document.getElementById('menu-toggle-icon');
+        sidebar.classList.toggle('compact');
+        if (sidebar.classList.contains('compact')) {
+            icon.setAttribute('data-lucide', 'panel-left');
+            localStorage.setItem('sidebarState', 'compact');
+        } else {
+            icon.setAttribute('data-lucide', 'x');
+            localStorage.setItem('sidebarState', 'expanded');
+        }
+        lucide.createIcons({
+            attrs: {
+                'stroke-width': 1,
+                'class': 'lucide-animated'
+            }
+        });
+        document.cookie = `sidebarState=${localStorage.getItem("sidebarState")}; path=/`;
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+        const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        document.cookie = `theme=${localStorage.getItem('theme')}; path=/`;
+    }
+
+    function toggleDropdown(propertyName) {
+        var dropdown = document.getElementById("dropdown-" + propertyName);
+        if (dropdown.style.display === "none" || dropdown.style.display === "") {
+            dropdown.style.display = "block";
+        } else {
+            dropdown.style.display = "none";
+        }
+    }
+
+    function updateSelectedCount(propertyName, displayName) {
+        var container = document.querySelector(`#dropdown-${propertyName}`).closest('.custom-select-container');
+        if (!container) return;
+        var button = container.querySelector('button.custom-select-button');
+        if (!button) return;
+        var checkedBoxes = container.querySelectorAll(`#dropdown-${propertyName} input[type="checkbox"]:checked`);
+        var count = checkedBoxes.length;
+        if (count > 0) {
+            button.textContent = `${displayName} Selected: ${count}`;
+        } else {
+            button.textContent = `${displayName} Select`;
+        }
+    }
+
+    document.addEventListener("click", function (event) {
+        var containers = document.querySelectorAll(".custom-select-container");
+        containers.forEach(container => {
+            if (!container.contains(event.target)) {
+                var dropdowns = container.querySelectorAll("[id^='dropdown-']");
+                dropdowns.forEach(d => d.style.display = "none");
+            }
+        });
+    });
+
+    function modalOpen(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function modalClose(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+</script>

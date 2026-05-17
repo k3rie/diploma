@@ -184,10 +184,13 @@
     <Compile Include="Areas\Contractor\ContractorAreaRegistration.cs" />
     <Compile Include="Areas\Contractor\Controllers\ContractorController.cs" />
     <Compile Include="Areas\Engineer\EngineerAreaRegistration.cs" />
+    <Compile Include="Areas\Owner\Controllers\OwnerController.cs" />
     <Compile Include="Areas\Owner\OwnerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\HashController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Data\DefectDbContext.cs" />
+    <Compile Include="Data\DefectRepository.cs" />
+    <Compile Include="Data\Interfaces\IDefectRepository.cs" />
     <Compile Include="Data\Interfaces\IUserRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +211,7 @@
     <Compile Include="Models\DefectComment.cs" />
     <Compile Include="Models\DefectMedia.cs" />
     <Compile Include="Models\DefectStatusHistory.cs" />
+    <Compile Include="Models\DTOs\DefectCreateDto.cs" />
     <Compile Include="Models\DTOs\LoginResultDto.cs" />
     <Compile Include="Models\DTOs\UserAuthDto.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -217,8 +221,20 @@
     <Compile Include="Models\Premise.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Localization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Localization.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\DefectService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
+    <Compile Include="Services\Interfaces\IDefectService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -256,6 +272,19 @@
     <Content Include="Areas\Contractor\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Contractor\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Contractor\Views\Contractor\Index.cshtml" />
+    <EmbeddedResource Include="Resources\Localization.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Areas\Owner\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Owner\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Owner\Views\Owner\Defects.cshtml" />
+    <Content Include="Areas\Owner\Views\Owner\CreateDefect.cshtml" />
+    <Content Include="Areas\Owner\Views\Owner\EditDefect.cshtml" />
+    <Content Include="Areas\Owner\Views\Owner\MyPremises.cshtml" />
+    <Content Include="Areas\Owner\Views\Shared\_Alerts.cshtml" />
+    <Content Include="Areas\Owner\Views\Owner\DefectDetails.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\async-search.js" />
@@ -287,29 +316,24 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Shared\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Contractor\Data\" />
     <Folder Include="Areas\Engineer\Controllers\" />
-    <Folder Include="Areas\Engineer\Data\" />
     <Folder Include="Areas\Engineer\Views\Shared\" />
-    <Folder Include="Areas\Owner\Controllers\" />
-    <Folder Include="Areas\Owner\Data\" />
-    <Folder Include="Areas\Owner\Views\Shared\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Hash\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Localization.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

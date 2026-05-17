@@ -10,29 +10,46 @@ namespace Diploma.App_Start
 {
     public class CustomDependencyResolver : IDependencyResolver
     {
-        private DefectDbContext _context;
-        private IUserRepository _userRepository;
-        private IUserService _userService;
-        private IAuthService _authService;
+        private readonly DefectDbContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
+        private readonly IAuthService _authService;
+        private readonly IDefectRepository _defectRepository;
+        private readonly IDefectService _defectService;
 
         public CustomDependencyResolver()
         {
             _context = new DefectDbContext();
+
+            // Repositories
             _userRepository = new UserRepository(_context);
+            _defectRepository = new DefectRepository(_context);
+
+            // Services
             _userService = new UserService(_userRepository);
             _authService = new AuthService(_userService);
+            _defectService = new DefectService(_defectRepository);
         }
 
         public object GetService(Type serviceType)
         {
+            // DbContext
+            if (serviceType == typeof(DefectDbContext))
+                return _context;
+
+            // Repositories
+            if (serviceType == typeof(IUserRepository))
+                return _userRepository;
+            if (serviceType == typeof(IDefectRepository))
+                return _defectRepository;
+
+            // Services
             if (serviceType == typeof(IAuthService))
                 return _authService;
             if (serviceType == typeof(IUserService))
                 return _userService;
-            if (serviceType == typeof(IUserRepository))
-                return _userRepository;
-            if (serviceType == typeof(DefectDbContext))
-                return _context;
+            if (serviceType == typeof(IDefectService))
+                return _defectService;
 
             return null;
         }

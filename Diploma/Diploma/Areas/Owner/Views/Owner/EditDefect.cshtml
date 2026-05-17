@@ -1,0 +1,94 @@
+﻿@model Diploma.Models.DTOs.DefectCreateDto
+@using Diploma.Models
+@{
+    ViewBag.Title = "Edit Defect";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Edit Defect</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EditDefect", "Owner", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PremisesId, "Premise")
+                            @Html.DropDownListFor(m => m.PremisesId,
+                                (SelectList)ViewBag.Premises,
+                                null,
+                                new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
+                            <small class="form-text text-muted">Premise cannot be changed after creation</small>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title, "Title")
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Description, "Description")
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Priority, "Priority")
+                                    <select name="Priority" class="form-control">
+                                        <option value="0" @(Model.Priority == DefectPriority.Low ? "selected" : "")>Low</option>
+                                        <option value="1" @(Model.Priority == DefectPriority.Medium ? "selected" : "")>Medium</option>
+                                        <option value="2" @(Model.Priority == DefectPriority.High ? "selected" : "")>High</option>
+                                        <option value="3" @(Model.Priority == DefectPriority.Critical ? "selected" : "")>Critical</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.DueDate, "Due Date")
+                                    @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new
+                                    {
+                                        @class = "form-control",
+                                        type = "date"
+                                    })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Add More Photos</label>
+                            <div class="custom-file">
+                                <input type="file" name="Photos" multiple accept="image/*" class="custom-file-input" id="photosInput" />
+                                <label class="custom-file-label" for="photosInput">Choose photos...</label>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("DefectDetails", new { id = ViewContext.RouteData.Values["id"] })" class="btn btn-outline-secondary">
+                                <i data-lucide="arrow-left"></i> Back
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="save"></i> Save Changes
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        lucide.createIcons();
+    </script>
+}

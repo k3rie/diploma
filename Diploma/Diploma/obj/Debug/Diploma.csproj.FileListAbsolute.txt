@@ -113,3 +113,8 @@ C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\EntityFramework6.Npgsql.xml
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.dll
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.pdb
 C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\BCrypt.Net.xml
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\bin\ru\Diploma.resources.dll
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.Resources.Localization.resources
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.Resources.Localization.ru.resources
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\Diploma.csproj.GenerateResource.cache
+C:\Users\fepav\Desktop\DICKLOMA\Diploma\Diploma\obj\Debug\ru\Diploma.resources.dll
