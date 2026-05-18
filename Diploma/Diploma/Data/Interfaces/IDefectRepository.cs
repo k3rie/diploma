@@ -1,4 +1,5 @@
 ﻿using Diploma.Models;
+using Diploma.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,5 +21,6 @@ namespace Diploma.Data.Interfaces
         Task AddCommentAsync(DefectComment comment);
         Task AddMediaAsync(DefectMedia media);
         Task UpdateStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId, string comment = null);
+        Task<OwnerDashboardDto> GetOwnerDashboardDataAsync(int ownerId);
     }
 }

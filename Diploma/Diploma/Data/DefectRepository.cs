@@ -1,5 +1,6 @@
 ﻿using Diploma.Data.Interfaces;
 using Diploma.Models;
+using Diploma.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -164,6 +165,32 @@ namespace Diploma.Data
 
             _context.DefectStatusHistory.Add(statusHistory);
             await _context.SaveChangesAsync();
+        }
+        public async Task<OwnerDashboardDto> GetOwnerDashboardDataAsync(int ownerId)
+        {
+            var defects = await _context.Defects
+                .Where(d => d.CreatedByUserId == ownerId && !d.IsDeleted)
+                .ToListAsync();
+
+            return new OwnerDashboardDto
+            {
+                TotalDefects = defects.Count,
+                CountByStatus = defects.GroupBy(d => d.Status.ToString())
+                                       .ToDictionary(g => g.Key, g => g.Count()),
+                CountByPriority = defects.GroupBy(d => d.Priority.ToString())
+                                         .ToDictionary(g => g.Key, g => g.Count()),
+                RecentDefects = defects.OrderByDescending(d => d.CreatedAt)
+                                       .Take(5)
+                                       .Select(d => new DefectListDto
+                                       {
+                                           Id = d.Id,
+                                           Title = d.Title,
+                                           Status = d.Status,
+                                           Priority = d.Priority,
+                                           CreatedAt = d.CreatedAt,
+                                           DueDate = d.DueDate
+                                       }).ToList()
+            };
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Diploma.Services.Interfaces
         Task<bool> HasAccessToDefectAsync(int defectId, int userId);
         Task<List<PremiseDto>> GetOwnerPremisesAsync(int ownerId);
         Task<PremiseDto> GetPremiseDetailsAsync(int premiseId);
+        Task<OwnerDashboardDto> GetOwnerDashboardAsync(int ownerId);
     }
 
     public class PremiseDto

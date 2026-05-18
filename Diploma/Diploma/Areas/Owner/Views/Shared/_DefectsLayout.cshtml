@@ -1,0 +1,103 @@
+﻿@using Diploma.Resources
+@model Diploma.Models.DTOs.DefectDetailDto
+@using Diploma.Models
+@{
+    Layout = "~/Areas/Owner/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right-layout">
+    <section class="main-content">
+        @RenderBody()
+    </section>
+
+    <aside class="action-bar @(ViewBag.SidebarRightState == "compact" ? "compact" : "")">
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="javascript:void(0);" class="menu-link" id="right-menu-toggle" onclick="toggleMenuRight()">
+                        <i data-lucide="@(ViewBag.SidebarRightState == "expanded" ? "x" : "panel-right")" id="right-menu-toggle-icon"></i>
+                        <span class="menu-text">@Localization.Menu</span>
+                    </a>
+                </li>
+            </ul>
+
+            <h3 class="menu-title">Actions</h3>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Defects")">
+                        <i data-lucide="arrow-left"></i>
+                        <span class="menu-text">Back to List</span>
+                    </a>
+                </li>
+
+                @if (Model.Status == DefectStatus.Created)
+                {
+                    <li>
+                        <a href="@Url.Action("EditDefect", new { id = Model.Id })">
+                            <i data-lucide="edit"></i>
+                            <span class="menu-text">Edit</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="openModal('@Url.Action("DeleteDefect", new { id = Model.Id })')" style="cursor:pointer">
+                            <i data-lucide="trash-2"></i>
+                            <span class="menu-text">Delete</span>
+                        </a>
+                    </li>
+                }
+
+                @if (Model.Status == DefectStatus.Fixed)
+                {
+                    <li>
+                        <a onclick="confirmAndSubmit('@Url.Action("ConfirmDefectFix", "Owner", new { id = Model.Id })')" style="cursor:pointer">
+                            <i data-lucide="check-circle"></i>
+                            <span class="menu-text">Confirm Fix</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </aside>
+</div>
+
+@section Scripts {
+    <script>
+        // функция подтверждения через POST (для Confirm и Delete, если нужно)
+        function confirmAndSubmit(url) {
+            if (confirm('Are you sure?')) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = url;
+                var antiForgery = document.createElement('input');
+                antiForgery.type = 'hidden';
+                antiForgery.name = '__RequestVerificationToken';
+                antiForgery.value = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                form.appendChild(antiForgery);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+
+        function openImage(src) {
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = src;
+        }
+        function closeImage() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        // Закрытие по клику на оверлей и по клавише Escape
+        document.getElementById('imageModal').addEventListener('click', function (e) {
+            if (e.target === this) closeImage();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeImage();
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+}
+
+<!-- Модальное окно для изображений -->
+<div id="imageModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);">
+    <span onclick="closeImage()" style="position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer;">&times;</span>
+    <img id="modalImage" style="margin: auto; display: block; max-width: 90%; max-height: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+</div>

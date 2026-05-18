@@ -79,6 +79,15 @@ namespace Diploma.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Defects.
+        /// </summary>
+        public static string Defects {
+            get {
+                return ResourceManager.GetString("Defects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string Logout {

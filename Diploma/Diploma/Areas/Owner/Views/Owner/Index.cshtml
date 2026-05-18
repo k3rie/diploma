@@ -1,0 +1,290 @@
+﻿@model Diploma.Models.DTOs.OwnerDashboardDto
+@using Diploma.Models
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+    <h2 style="margin-top:0; font-weight:600; color: var(--text-color);">
+        Welcome, @User.Identity.Name
+    </h2>
+
+    <!-- Карточки -->
+    <div class="db-cards">
+        <div class="db-card db-card--total">
+            <div class="db-card__value">@Model.TotalDefects</div>
+            <div class="db-card__label">Total Defects</div>
+            <i data-lucide="alert-triangle" class="db-card__icon"></i>
+        </div>
+        @foreach (var kvp in Model.CountByStatus)
+        {
+            <div class="db-card db-card--@kvp.Key.ToLower()">
+                <div class="db-card__value">@kvp.Value</div>
+                <div class="db-card__label">@kvp.Key</div>
+                <i data-lucide="@GetStatusIcon(kvp.Key)" class="db-card__icon"></i>
+            </div>
+        }
+    </div>
+
+    <div class="db-grid">
+        <!-- График -->
+        <section class="section-info db-chart">
+            <h3>Defects by Status</h3>
+            <canvas id="statusChart"></canvas>
+        </section>
+
+        <!-- Последние дефекты -->
+        <section class="section-info db-recent">
+            <h3>Recent Defects</h3>
+            @if (Model.RecentDefects.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr><th>Title</th><th>Status</th><th>Date</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model.RecentDefects)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("DefectDetails", new { id = d.Id })" class="link">@d.Title</a>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge @GetStatusClass(d.Status)">@d.Status</span>
+                                    </td>
+                                    <td>@d.CreatedAt.ToString("dd.MM.yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">No defects yet.</p>
+            }
+        </section>
+    </div>
+
+<style>
+    /* ---------- Карточки ---------- */
+    .db-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .db-card {
+        position: relative;
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 20px 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        border: 1px solid var(--border-color);
+        transition: transform 0.2s, box-shadow 0.2s;
+        overflow: hidden;
+    }
+
+        .db-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+    .db-card__value {
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 6px;
+        color: var(--text-color);
+    }
+
+    .db-card__label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--chart-label);
+        text-transform: capitalize;
+    }
+
+    .db-card__icon {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
+        opacity: 0.3;
+        stroke: currentColor;
+    }
+
+    /* Цветовые акценты для статусов */
+    .db-card--total {
+        border-left: 5px solid var(--primary-blue);
+    }
+
+    .db-card--created {
+        border-left: 5px solid #9ca3af;
+    }
+
+    .db-card--assigned {
+        border-left: 5px solid #3b82f6;
+    }
+
+    .db-card--inprogress {
+        border-left: 5px solid #f59e0b;
+    }
+
+    .db-card--fixed {
+        border-left: 5px solid #10b981;
+    }
+
+    .db-card--confirmed {
+        border-left: 5px solid #6366f1;
+    }
+
+    .db-card--rejected {
+        border-left: 5px solid #ef4444;
+    }
+
+    /* ---------- Сетка график + список ---------- */
+    .db-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .db-chart {
+        height: 350px;
+        position: relative;
+    }
+
+        .db-chart canvas {
+            max-height: 280px;
+        }
+
+    @@media (max-width: 768px) {
+        .db-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .db-cards {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        }
+    }
+
+    /* ---------- Таблица последних дефектов ---------- */
+    .db-recent .table {
+        margin-bottom: 0;
+    }
+
+        .db-recent .table th {
+            font-weight: 600;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .db-recent .table td {
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+    .link {
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+    /* ---------- Утилиты ---------- */
+    .text-muted {
+        color: var(--chart-label);
+    }
+</style>
+
+@functions {
+    // CSS-класс для статуса
+    string GetStatusClass(DefectStatus s)
+    {
+        switch (s)
+        {
+            case DefectStatus.Created: return "status-new";
+            case DefectStatus.Assigned: return "status-active";
+            case DefectStatus.InProgress: return "status-inprocess";
+            case DefectStatus.Fixed: return "status-approved";
+            case DefectStatus.Confirmed: return "status-active";
+            case DefectStatus.Rejected: return "status-rejected";
+            default: return "status-new";
+        }
+    }
+
+    // Иконка для карточки статуса
+    string GetStatusIcon(string status)
+    {
+        switch (status)
+        {
+            case "Created": return "circle";
+            case "Assigned": return "user-check";
+            case "InProgress": return "loader";
+            case "Fixed": return "check-circle";
+            case "Confirmed": return "check-square";
+            case "Rejected": return "x-circle";
+            default: return "circle";
+        }
+    }
+}
+
+@section Scripts {
+    <script>
+        lucide.createIcons();
+
+        const statusData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CountByStatus));
+        const labels = Object.keys(statusData);
+        const values = Object.values(statusData);
+        const backgroundColors = labels.map(l => {
+            switch(l) {
+                case 'Created': return '#9ca3af';
+                case 'Assigned': return '#3b82f6';
+                case 'InProgress': return '#f59e0b';
+                case 'Fixed': return '#10b981';
+                case 'Confirmed': return '#6366f1';
+                case 'Rejected': return '#ef4444';
+                default: return '#d1d5db';
+            }
+        });
+
+        const ctx = document.getElementById('statusChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: backgroundColors,
+                    borderWidth: 0,
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true,
+                            font: {
+                                size: 13,
+                                family: "'Poppins', sans-serif"
+                            },
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

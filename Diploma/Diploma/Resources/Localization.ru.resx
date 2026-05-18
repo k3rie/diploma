@@ -123,6 +123,9 @@
   <data name="Chart" xml:space="preserve">
     <value>Диаграмма</value>
   </data>
+  <data name="Defects" xml:space="preserve">
+    <value>Дефект</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Выйти</value>
   </data>

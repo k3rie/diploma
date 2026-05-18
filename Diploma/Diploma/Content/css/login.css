@@ -293,7 +293,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 20px 60px var(--card-shadow);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .dark .login-card {

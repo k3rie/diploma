@@ -33,7 +33,7 @@
 
         <div class="login-card">
             <div class="logo-section">
-                <img class="company-logo" alt="Company Logo">
+                <img src="@Url.Content("~/Content/images/logomgsu.svg")" alt="Logo" class="logo">
             </div>
 
             @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "login-form" }))

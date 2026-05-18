@@ -280,7 +280,10 @@ namespace Diploma.Services
                 UploadedAt = DateTime.Now
             };
         }
-
+        public async Task<OwnerDashboardDto> GetOwnerDashboardAsync(int ownerId)
+        {
+            return await _defectRepository.GetOwnerDashboardDataAsync(ownerId);
+        }
         #endregion
     }
 }

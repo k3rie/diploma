@@ -21,9 +21,11 @@ namespace Diploma.Areas.Owner.Controllers
         }
 
         // GET: Owner/Owner
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var currentUser = UserIdentityHelper.GetCurrentUser();
+            var dashboard = await _defectService.GetOwnerDashboardAsync(currentUser.UserId);
+            return View(dashboard);
         }
 
         #region Defects CRUD
