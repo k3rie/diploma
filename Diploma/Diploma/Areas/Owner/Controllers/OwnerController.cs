@@ -5,6 +5,7 @@ using Diploma.Models.DTOs;
 using Diploma.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -45,6 +46,7 @@ namespace Diploma.Areas.Owner.Controllers
         {
             var currentUser = UserIdentityHelper.GetCurrentUser();
             var defect = await _defectService.GetDefectDetailsAsync(id, currentUser.UserId);
+            ViewBag.Defect = defect;
 
             if (defect == null)
                 return HttpNotFound("Defect not found or you don't have access");
@@ -59,12 +61,11 @@ namespace Diploma.Areas.Owner.Controllers
             var currentUser = UserIdentityHelper.GetCurrentUser();
             var premises = await _defectService.GetOwnerPremisesAsync(currentUser.UserId);
 
-            if (premises!=null)
+            if (premises == null || !premises.Any())
             {
                 TempData["WarningMessage"] = "You don't have any premises assigned. Please contact administrator.";
                 return RedirectToAction("Defects");
             }
-
             ViewBag.Premises = new SelectList(premises, "Id", "Number");
 
             var model = new DefectCreateDto();
@@ -73,7 +74,7 @@ namespace Diploma.Areas.Owner.Controllers
                 model.PremisesId = premiseId.Value;
             }
 
-            return View(model);
+            return PartialView("_CreateDefect", model);
         }
 
         // POST: Owner/Owner/CreateDefect
@@ -121,6 +122,7 @@ namespace Diploma.Areas.Owner.Controllers
                 return new HttpStatusCodeResult(403, "You don't have access to this defect");
 
             var defect = await _defectService.GetDefectDetailsAsync(id, currentUser.UserId);
+            ViewBag.Defect = defect;
             if (defect == null)
                 return HttpNotFound("Defect not found");
 

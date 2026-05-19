@@ -1,0 +1,85 @@
+﻿@using Diploma.Resources
+@using Diploma.Models
+@{
+    Layout = "~/Areas/Engineer/Views/Shared/_Layout.cshtml";
+    var defect = ViewBag.Defect as Diploma.Models.DTOs.DefectDetailDto;
+}
+<div class="right-layout">
+    @Html.AntiForgeryToken()
+    <section class="main-content">
+        @RenderBody()
+    </section>
+    <aside class="action-bar @(ViewBag.SidebarRightState == "compact" ? "compact" : "")">
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="javascript:void(0);" class="menu-link" id="right-menu-toggle" onclick="toggleMenuRight()">
+                        <i data-lucide="@(ViewBag.SidebarRightState == "expanded" ? "x" : "panel-right")" id="right-menu-toggle-icon"></i>
+                        <span class="menu-text">@Localization.Menu</span>
+                    </a>
+                </li>
+            </ul>
+
+            <h3 class="menu-title">Actions</h3>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Defects")">
+                        <i data-lucide="arrow-left"></i> Back to List
+                    </a>
+                </li>
+                @if (defect != null)
+                {
+                    if (defect.Status == DefectStatus.Created)
+                    {
+                        <li>
+                            <a href="@Url.Action("Assign", new { id = defect.Id })">
+                                <i data-lucide="user-check"></i> Assign
+                            </a>
+                        </li>
+                    }
+                    if (defect.Status == DefectStatus.Assigned)
+                    {
+                        <li>
+                            <a href="javascript:void(0)" onclick="changeStatus('@Url.Action("ChangeStatus", "Engineer", new { defectId = defect.Id, newStatus = DefectStatus.InProgress })')">
+                                <i data-lucide="play"></i> Start Work
+                            </a>
+                        </li>
+                    }
+                    if (defect.Status == DefectStatus.InProgress)
+                    {
+                        <li>
+                            <a href="javascript:void(0)" onclick="changeStatus('@Url.Action("ChangeStatus", "Engineer", new { defectId = defect.Id, newStatus = DefectStatus.Fixed })')">
+                                <i data-lucide="check"></i> Mark Fixed
+                            </a>
+                        </li>
+                    }
+                    if (defect.Status == DefectStatus.Fixed)
+                    {
+                        <li><span class="menu-text text-muted">Awaiting owner confirmation</span></li>
+                    }
+                }
+            </ul>
+        </nav>
+    </aside>
+</div>
+
+@section Scripts {
+    <script>
+        function changeStatus(url) {
+            if (confirm('Change status?')) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = url;
+                var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '__RequestVerificationToken';
+                input.value = token;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+}

@@ -28,8 +28,8 @@
 
     public enum CompanyType
     {
-        Developer = 0,          // Застройщик
-        Contractor = 1,         // Подрядчик
-        ManagementCompany = 2   // Управляющая компания
+        Developer = 1,          // Застройщик
+        Contractor = 2,         // Подрядчик
+        ManagementCompany = 3   // Управляющая компания
     }
 }

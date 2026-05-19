@@ -1,0 +1,92 @@
+﻿@model Diploma.Models.DTOs.DefectCreateDto
+@{
+    Layout = null;
+}
+
+<div class="modal-body-content">
+    @using (Html.BeginForm("CreateDefect", "Owner", FormMethod.Post, new { enctype = "multipart/form-data", @class = "access-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <section class="section-info">
+            <h2>Report New Defect</h2>
+            <div class="info-grid-2">
+                <div class="info-item">
+                    <span class="label required-field">Premise</span>
+                    <span class="value">
+                        @Html.DropDownListFor(m => m.PremisesId, (SelectList)ViewBag.Premises, "-- Select Premise --", new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.PremisesId, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+                <div class="info-item">
+                    <span class="label required-field">Title</span>
+                    <span class="value">
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "E.g., Crack in the wall, Water leak, Broken window...", maxlength = "255" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <span class="label">Description</span>
+                    <span class="value">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5", placeholder = "Describe the defect in detail..." })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Priority</span>
+                    <span class="value">
+                        @Html.EnumDropDownListFor(m => m.Priority, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Desired Completion Date</span>
+                    <span class="value">
+                        @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd") })
+                        @Html.ValidationMessageFor(m => m.DueDate, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <span class="label">Photos of the Defect</span>
+                    <span class="value">
+                        <input type="file" name="Photos" multiple accept="image/*" class="form-control-file" id="photosInput" />
+                        <small class="form-text text-muted">You can select multiple photos. Maximum 10MB each.</small>
+                        <div id="photoPreview" class="row mt-3"></div>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <div class="form-actions-sticky">
+            <button type="submit" class="apply-btn">
+                <i data-lucide="save"></i> Submit Defect
+            </button>
+        </div>
+    }
+</div>
+
+<script>
+    lucide.createIcons();
+
+    // Предпросмотр выбранных фото
+    document.getElementById('photosInput').addEventListener('change', function (e) {
+        var files = e.target.files;
+        var preview = document.getElementById('photoPreview');
+        preview.innerHTML = '';
+
+        if (files.length > 0) {
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var col = document.createElement('div');
+                    col.className = 'col-md-3 mb-2';
+                    col.innerHTML = '<img src="' + e.target.result + '" class="img-thumbnail" style="height:100px;width:100%;object-fit:cover;" />';
+                    preview.appendChild(col);
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        }
+    });
+</script>

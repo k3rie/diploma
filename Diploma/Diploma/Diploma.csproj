@@ -183,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Contractor\ContractorAreaRegistration.cs" />
     <Compile Include="Areas\Contractor\Controllers\ContractorController.cs" />
+    <Compile Include="Areas\Engineer\Controllers\EngineerController.cs" />
     <Compile Include="Areas\Engineer\EngineerAreaRegistration.cs" />
     <Compile Include="Areas\Owner\Controllers\OwnerController.cs" />
     <Compile Include="Areas\Owner\OwnerAreaRegistration.cs" />
@@ -191,7 +192,9 @@
     <Compile Include="Data\DefectDbContext.cs" />
     <Compile Include="Data\DefectRepository.cs" />
     <Compile Include="Data\Interfaces\IDefectRepository.cs" />
+    <Compile Include="Data\Interfaces\INotificationRepository.cs" />
     <Compile Include="Data\Interfaces\IUserRepository.cs" />
+    <Compile Include="Data\NotificationRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,7 +213,9 @@
     <Compile Include="Models\DefectComment.cs" />
     <Compile Include="Models\DefectMedia.cs" />
     <Compile Include="Models\DefectStatusHistory.cs" />
+    <Compile Include="Models\DTOs\AssignDefectDto.cs" />
     <Compile Include="Models\DTOs\DefectCreateDto.cs" />
+    <Compile Include="Models\DTOs\EngineerDashboardDto.cs" />
     <Compile Include="Models\DTOs\LoginResultDto.cs" />
     <Compile Include="Models\DTOs\OwnerDashboardDto.cs" />
     <Compile Include="Models\DTOs\UserAuthDto.cs" />
@@ -235,7 +240,9 @@
     <Compile Include="Services\DefectService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
     <Compile Include="Services\Interfaces\IDefectService.cs" />
+    <Compile Include="Services\Interfaces\INotificationService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -298,7 +305,6 @@
     <Content Include="Areas\Owner\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Owner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Owner\Views\Owner\Defects.cshtml" />
-    <Content Include="Areas\Owner\Views\Owner\CreateDefect.cshtml" />
     <Content Include="Areas\Owner\Views\Owner\EditDefect.cshtml" />
     <Content Include="Areas\Owner\Views\Owner\MyPremises.cshtml" />
     <Content Include="Areas\Owner\Views\Shared\_Alerts.cshtml" />
@@ -321,6 +327,16 @@
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Areas\Owner\Views\Owner\Index.cshtml" />
     <Content Include="Areas\Owner\Views\Shared\_DefectsLayout.cshtml" />
+    <Content Include="Areas\Owner\Views\Shared\_CreateDefect.cshtml" />
+    <Content Include="Areas\Engineer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Engineer\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Engineer\Views\Shared\_DefectsLayout.cshtml" />
+    <Content Include="Areas\Engineer\Views\Engineer\DefectDetails.cshtml" />
+    <Content Include="Areas\Engineer\Views\Engineer\Defects.cshtml" />
+    <Content Include="Areas\Engineer\Views\Engineer\Assign.cshtml" />
+    <Content Include="Areas\Engineer\Views\Engineer\Index.cshtml" />
+    <Content Include="Areas\Engineer\Views\Shared\_Alerts.cshtml" />
+    <Content Include="Areas\Engineer\Views\Shared\_NotificationBadge.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\async-search.js" />
@@ -357,8 +373,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Engineer\Controllers\" />
-    <Folder Include="Areas\Engineer\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,101 @@
+﻿@model Diploma.Models.DTOs.AssignDefectDto
+@{
+    ViewBag.Title = "Assign Defect";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Engineer/Defects", "Defects"),
+        new Diploma.Models.BreadCrumb("", "Assign")
+    };
+}
+
+@using (Html.BeginForm("Assign", "Engineer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.DefectId)
+
+    <section class="section-info">
+        <h2>Assign Contractor</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Contractor Company</span>
+                <span class="value">
+                    @Html.DropDownListFor(m => m.ContractorCompanyId,
+                        (SelectList)ViewBag.Contractors,
+                        "-- Select Contractor --",
+                        new { @class = "form-control", id = "contractor-select" })
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="label">Assigned User</span>
+                <span class="value">
+                    @Html.DropDownListFor(m => m.AssignedToUserId,
+                        (SelectList)ViewBag.ContractorUsers,
+                        "-- Select User --",
+                        new { @class = "form-control", id = "user-select" })
+                </span>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <span class="label">Take the task</span>
+                <span class="value">
+                    <label>
+                        @Html.CheckBoxFor(m => m.AssignToMe, new { id = "assign-to-me" })
+                        I will fix this defect myself
+                    </label>
+                </span>
+            </div>
+        </div>
+    </section>
+    <div class="form-actions">
+        <button type="submit" class="apply-btn">
+            <i data-lucide="user-check"></i> Assign
+        </button>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        lucide.createIcons();
+
+        // Начальный список всех подрядчиков (передан как готовая JSON-строка)
+        const initialUsers = @Html.Raw(ViewBag.InitialUsersJson);
+
+        function populateUserSelect(users) {
+            const select = $('#user-select');
+            select.empty();
+            select.append('<option value="">-- Select User --</option>');
+            $.each(users, function(i, user) {
+                select.append($('<option>', { value: user.Value, text: user.Text }));
+            });
+        }
+
+        // Чекбокс «взять на себя»
+        $('#assign-to-me').change(function() {
+            if (this.checked) {
+                $('#contractor-select').prop('disabled', true).val('');
+                $('#user-select').prop('disabled', true).html('<option value="">— Self —</option>');
+            } else {
+                $('#contractor-select').prop('disabled', false);
+                $('#user-select').prop('disabled', false);
+                populateUserSelect(initialUsers);
+            }
+        });
+
+        // При смене компании подгружаем пользователей через AJAX
+        $('#contractor-select').change(function() {
+            const companyId = $(this).val();
+            if (!companyId) {
+                populateUserSelect(initialUsers);
+                return;
+            }
+           $.getJSON('@Url.Action("GetUsersByCompany", "Engineer", new { area = "Engineer" })', { companyId: companyId }, function(data) {
+                console.log('Received users:', data);
+                const users = data.map(function(u) {
+                    return { Value: u.Id.toString(), Text: u.FullName };
+                });
+                populateUserSelect(users);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX error:', textStatus, errorThrown);
+            });
+        });
+    </script>
+}

@@ -1,94 +1,81 @@
 ﻿@model Diploma.Models.DTOs.DefectCreateDto
 @using Diploma.Models
+@using Diploma.Resources
 @{
-    ViewBag.Title = "Edit Defect";
+    Layout = "~/Areas/Owner/Views/Shared/_DefectsLayout.cshtml";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Owner/Owner/Defects", Localization.Defects),
+        new Diploma.Models.BreadCrumb("/Owner/Owner/Defect", Localization.Edit)
+    };
 }
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Edit Defect</h4>
-                </div>
-                <div class="card-body">
-                    @using (Html.BeginForm("EditDefect", "Owner", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("EditDefect", "Owner", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.PremisesId, "Premise")
-                            @Html.DropDownListFor(m => m.PremisesId,
-                                (SelectList)ViewBag.Premises,
-                                null,
-                                new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
-                            <small class="form-text text-muted">Premise cannot be changed after creation</small>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Title, "Title")
-                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Description, "Description")
-                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
-                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Priority, "Priority")
-                                    <select name="Priority" class="form-control">
-                                        <option value="0" @(Model.Priority == DefectPriority.Low ? "selected" : "")>Low</option>
-                                        <option value="1" @(Model.Priority == DefectPriority.Medium ? "selected" : "")>Medium</option>
-                                        <option value="2" @(Model.Priority == DefectPriority.High ? "selected" : "")>High</option>
-                                        <option value="3" @(Model.Priority == DefectPriority.Critical ? "selected" : "")>Critical</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.DueDate, "Due Date")
-                                    @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new
-                                    {
-                                        @class = "form-control",
-                                        type = "date"
-                                    })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Add More Photos</label>
-                            <div class="custom-file">
-                                <input type="file" name="Photos" multiple accept="image/*" class="custom-file-input" id="photosInput" />
-                                <label class="custom-file-label" for="photosInput">Choose photos...</label>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div class="d-flex justify-content-between">
-                            <a href="@Url.Action("DefectDetails", new { id = ViewContext.RouteData.Values["id"] })" class="btn btn-outline-secondary">
-                                <i data-lucide="arrow-left"></i> Back
-                            </a>
-                            <button type="submit" class="btn btn-primary">
-                                <i data-lucide="save"></i> Save Changes
-                            </button>
-                        </div>
-                    }
-                </div>
+    <section class="section-info">
+        <h2>Defect Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Premise</span>
+                <span class="value">
+                    @Html.DropDownListFor(m => m.PremisesId, (SelectList)ViewBag.Premises, null, new { @class = "form-control", disabled = "disabled" })
+                    <small class="form-text text-muted">Premise cannot be changed after creation</small>
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="label required-field">@Html.DisplayNameFor(m => m.Title)</span>
+                <span class="value">
+                    @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </span>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <span class="label">@Html.DisplayNameFor(m => m.Description)</span>
+                <span class="value">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="label">@Html.DisplayNameFor(m => m.Priority)</span>
+                <span class="value">
+                    @Html.EnumDropDownListFor(m => m.Priority, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="label">@Html.DisplayNameFor(m => m.DueDate)</span>
+                <span class="value">
+                    @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.DueDate, "", new { @class = "text-danger" })
+                </span>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-@section Scripts {
-    <script>
-        lucide.createIcons();
-    </script>
+    <section class="section-info">
+        <h2>Photos</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Add More Photos</span>
+                <span class="value">
+                    <input type="file" name="Photos" multiple accept="image/*" class="form-control-file" id="photosInput" />
+                    <small class="form-text text-muted">You can select multiple photos.</small>
+                    <div id="photoPreview" class="row mt-3"></div>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <div class="form-actions">
+        <a href="@Url.Action("DefectDetails", new { id = ViewContext.RouteData.Values["id"] })" class="btn btn-outline-secondary">
+            <i data-lucide="arrow-left"></i> Back
+        </a>
+        <button type="submit" class="btn-submit">
+            <i data-lucide="save"></i> Save Changes
+        </button>
+    </div>
 }

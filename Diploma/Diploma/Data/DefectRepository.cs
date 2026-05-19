@@ -192,5 +192,88 @@ namespace Diploma.Data
                                        }).ToList()
             };
         }
+        public async Task<List<Defect>> GetDefectsByDeveloperCompanyAsync(int companyId)
+        {
+            return await _context.Defects
+                .Include(d => d.Premise.ConstructionObject)
+                .Include(d => d.Comments)
+                .Include(d => d.MediaFiles)
+                .Where(d => !d.IsDeleted && d.Premise.ConstructionObject.DeveloperCompanyId == companyId)
+                .OrderByDescending(d => d.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<Defect> GetDefectByIdForEngineerAsync(int defectId, int companyId)
+        {
+            return await _context.Defects
+                .Include(d => d.Premise.ConstructionObject)
+                .FirstOrDefaultAsync(d => d.Id == defectId && !d.IsDeleted && d.Premise.ConstructionObject.DeveloperCompanyId == companyId);
+        }
+
+        public async Task AssignDefectAsync(int defectId, int? contractorCompanyId, int? assignedUserId, int changedByUserId)
+        {
+            var defect = await _context.Defects.FindAsync(defectId);
+            if (defect == null) return;
+
+            defect.ContractorCompanyId = contractorCompanyId;
+            defect.AssignedToUserId = assignedUserId;
+            defect.Status = DefectStatus.Assigned;
+            defect.UpdatedAt = DateTime.Now;
+
+            var history = new DefectStatusHistory
+            {
+                DefectId = defectId,
+                OldStatus = DefectStatus.Created,
+                NewStatus = DefectStatus.Assigned,
+                ChangedByUserId = changedByUserId,
+                ChangedAt = DateTime.Now,
+                Comment = "Defect assigned to contractor"
+            };
+            _context.DefectStatusHistory.Add(history);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Company>> GetContractorCompaniesAsync()
+        {
+            return await _context.Companies
+                .Where(c => c.CompanyType == CompanyType.Contractor && c.IsActive)
+                .ToListAsync();
+        }
+
+        public async Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId)
+        {
+            var query = _context.Users.Where(u => u.Role == role && u.IsActive);
+            if (companyId.HasValue)
+                query = query.Where(u => u.CompanyId == companyId.Value);
+            return await query.ToListAsync();
+        }
+
+        public async Task UpdateDefectStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId, string comment = null)
+        {
+            var defect = await _context.Defects.FindAsync(defectId);
+            if (defect == null) return;
+
+            var oldStatus = defect.Status;
+            defect.Status = newStatus;
+            defect.UpdatedAt = DateTime.Now;
+
+            if (newStatus == DefectStatus.Confirmed)
+            {
+                defect.AcceptedByOwnerAt = DateTime.Now;
+                defect.ClosedAt = DateTime.Now;
+            }
+
+            var history = new DefectStatusHistory
+            {
+                DefectId = defectId,
+                OldStatus = oldStatus,
+                NewStatus = newStatus,
+                ChangedByUserId = changedByUserId,
+                ChangedAt = DateTime.Now,
+                Comment = comment ?? $"Status changed from {oldStatus} to {newStatus}"
+            };
+            _context.DefectStatusHistory.Add(history);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -2,22 +2,17 @@
 
 namespace Diploma.Areas.Engineer
 {
-    public class EngineerAreaRegistration : AreaRegistration 
+    public class EngineerAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Engineer";
-            }
-        }
+        public override string AreaName => "Engineer";
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Engineer_default",
                 "Engineer/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Engineer", action = "Index", id = UrlParameter.Optional },
+                new[] { "Diploma.Areas.Engineer.Controllers" }
             );
         }
     }

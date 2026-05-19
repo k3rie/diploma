@@ -16,19 +16,23 @@ namespace Diploma.App_Start
         private readonly IAuthService _authService;
         private readonly IDefectRepository _defectRepository;
         private readonly IDefectService _defectService;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly INotificationService _notificationService;
 
         public CustomDependencyResolver()
         {
             _context = new DefectDbContext();
 
-            // Repositories
+            // Repositories (создаём сначала все репозитории)
             _userRepository = new UserRepository(_context);
             _defectRepository = new DefectRepository(_context);
+            _notificationRepository = new NotificationRepository(_context);
 
-            // Services
+            // Services (затем сервисы, передавая нужные зависимости)
             _userService = new UserService(_userRepository);
             _authService = new AuthService(_userService);
-            _defectService = new DefectService(_defectRepository);
+            _notificationService = new NotificationService(_notificationRepository);
+            _defectService = new DefectService(_defectRepository, _notificationService);
         }
 
         public object GetService(Type serviceType)
@@ -42,7 +46,8 @@ namespace Diploma.App_Start
                 return _userRepository;
             if (serviceType == typeof(IDefectRepository))
                 return _defectRepository;
-
+            if (serviceType == typeof(INotificationRepository))
+                return _notificationRepository;
             // Services
             if (serviceType == typeof(IAuthService))
                 return _authService;
@@ -50,6 +55,9 @@ namespace Diploma.App_Start
                 return _userService;
             if (serviceType == typeof(IDefectService))
                 return _defectService;
+
+            if (serviceType == typeof(INotificationService))
+                return _notificationService;
 
             return null;
         }

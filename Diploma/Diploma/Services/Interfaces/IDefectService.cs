@@ -1,4 +1,5 @@
-﻿using Diploma.Models.DTOs;
+﻿using Diploma.Models;
+using Diploma.Models.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,6 +18,14 @@ namespace Diploma.Services.Interfaces
         Task<List<PremiseDto>> GetOwnerPremisesAsync(int ownerId);
         Task<PremiseDto> GetPremiseDetailsAsync(int premiseId);
         Task<OwnerDashboardDto> GetOwnerDashboardAsync(int ownerId);
+        // В Diploma.Services.Interfaces.IDefectService инженер
+        Task<EngineerDashboardDto> GetEngineerDashboardAsync(int companyId);
+        Task<List<DefectListDto>> GetEngineerDefectsAsync(int companyId);
+        Task<DefectDetailDto> GetEngineerDefectDetailsAsync(int defectId, int companyId);
+        Task AssignDefectAsync(int defectId, int? contractorCompanyId, int? assignedUserId, int changedByUserId, int companyId);
+        Task UpdateDefectStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId);
+        Task<List<Company>> GetContractorCompaniesAsync();
+        Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId);
     }
 
     public class PremiseDto

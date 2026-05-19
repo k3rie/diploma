@@ -12,6 +12,7 @@
 }
 
 .modal {
+    all: unset; /* сбросит все Bootstrap-стили */
     background: var(--card-bg);
     border-radius: 8px;
     min-width: 300px;

@@ -1,11 +1,13 @@
 ﻿@using Diploma.Resources
-@model Diploma.Models.DTOs.DefectDetailDto
+
 @using Diploma.Models
 @{
     Layout = "~/Areas/Owner/Views/Shared/_Layout.cshtml";
+    Diploma.Models.DTOs.DefectDetailDto Model = ViewBag.Defect;
 }
 
 <div class="right-layout">
+    @Html.AntiForgeryToken()
     <section class="main-content">
         @RenderBody()
     </section>
@@ -39,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a onclick="openModal('@Url.Action("DeleteDefect", new { id = Model.Id })')" style="cursor:pointer">
+                        <a onclick="confirmAndSubmit('@Url.Action("DeleteDefect", "Owner", new { id = Model.Id })')" style="cursor:pointer">
                             <i data-lucide="trash-2"></i>
                             <span class="menu-text">Delete</span>
                         </a>

@@ -9,16 +9,19 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Diploma.Services
 {
     public class DefectService : IDefectService
     {
         private readonly IDefectRepository _defectRepository;
+        private readonly INotificationService _notificationService;
 
-        public DefectService(IDefectRepository defectRepository)
+        public DefectService(IDefectRepository defectRepository, INotificationService notificationService)
         {
             _defectRepository = defectRepository;
+            _notificationService = notificationService;
         }
 
         public async Task<DefectDetailDto> GetDefectDetailsAsync(int defectId, int userId)
@@ -145,6 +148,21 @@ namespace Diploma.Services
 
             if (defect.Status != DefectStatus.Fixed)
                 throw new InvalidOperationException("Can only confirm defects with 'Fixed' status");
+            var defectnot = await _defectRepository.GetByIdWithDetailsAsync(defectId);
+            if (defectnot != null)
+            {
+                // Уведомить инженера, если он не владелец
+                if (defectnot.AssignedToUserId.HasValue && defectnot.AssignedToUserId != userId)
+                    await _notificationService.NotifyAsync(defectnot.AssignedToUserId.Value, "Defect confirmed", $"Defect '{defectnot.Title}' was confirmed by owner.");
+                // Уведомить застройщика (всех инженеров компании) – опционально
+                var companyId = defectnot.Premise?.ConstructionObject?.DeveloperCompanyId;
+                if (companyId.HasValue)
+                {
+                    var engineers = await _defectRepository.GetUsersByRoleAndCompanyAsync(UserRole.DeveloperEngineer, companyId);
+                    foreach (var eng in engineers.Where(e => e.Id != userId))
+                        await _notificationService.NotifyAsync(eng.Id, "Defect confirmed", $"Defect '{defectnot.Title}' confirmed by owner.");
+                }
+            }
 
             await _defectRepository.UpdateStatusAsync(defectId, DefectStatus.Confirmed, userId, "Fix confirmed by owner");
         }
@@ -284,6 +302,86 @@ namespace Diploma.Services
         {
             return await _defectRepository.GetOwnerDashboardDataAsync(ownerId);
         }
+
+        public async Task<EngineerDashboardDto> GetEngineerDashboardAsync(int companyId)
+        {
+            var defects = await _defectRepository.GetDefectsByDeveloperCompanyAsync(companyId);
+            return new EngineerDashboardDto
+            {
+                TotalDefects = defects.Count,
+                CountByStatus = defects.GroupBy(d => d.Status.ToString())
+                                       .ToDictionary(g => g.Key, g => g.Count()),
+                CountByPriority = defects.GroupBy(d => d.Priority.ToString())
+                                         .ToDictionary(g => g.Key, g => g.Count()),
+                OverdueCount = defects.Count(d => d.DueDate.HasValue && d.DueDate < DateTime.Now && d.Status != DefectStatus.Confirmed),
+                AverageFixTime = defects.Where(d => d.ClosedAt.HasValue)
+                                        .Average(d => (d.ClosedAt.Value - d.CreatedAt).TotalDays)
+            };
+        }
+
+        public async Task<List<DefectListDto>> GetEngineerDefectsAsync(int companyId)
+        {
+            var defects = await _defectRepository.GetDefectsByDeveloperCompanyAsync(companyId);
+            return defects.Select(MapToListDto).ToList();
+        }
+
+        public async Task<DefectDetailDto> GetEngineerDefectDetailsAsync(int defectId, int companyId)
+        {
+            var defect = await _defectRepository.GetByIdWithDetailsAsync(defectId);
+            if (defect == null || defect.Premise.ConstructionObject.DeveloperCompanyId != companyId)
+                return null;
+            return MapToDetailDto(defect);
+        }
+
+        public async Task AssignDefectAsync(int defectId, int? contractorCompanyId, int? assignedUserId, int changedByUserId, int companyId)
+        {
+            // Проверяем, что дефект принадлежит компании инженера
+            var defect = await _defectRepository.GetDefectByIdForEngineerAsync(defectId, companyId);
+            if (defect == null)
+                throw new KeyNotFoundException("Defect not found or access denied");
+            // Уведомить владельца
+            if (defect.CreatedByUserId != changedByUserId)
+                await _notificationService.NotifyAsync(defect.CreatedByUserId, "Defect assigned", $"Your defect '{defect.Title}' was assigned.");
+
+            // Уведомить подрядчика, если не сам себя назначил
+            if (assignedUserId.HasValue && assignedUserId.Value != changedByUserId)
+                await _notificationService.NotifyAsync(assignedUserId.Value, "New defect assigned", $"You were assigned to defect '{defect.Title}'.");
+            await _defectRepository.AssignDefectAsync(defectId, contractorCompanyId, assignedUserId, changedByUserId);
+        }
+
+        // Обновим сигнатуру AssignDefectAsync в интерфейсе и сервисе, добавив companyId, но можем обойтись без него, если получим через changedByUserId.
+        // Сделаем: в сервисе AssignDefectAsync(int defectId, int? contractorCompanyId, int? assignedUserId, int changedByUserId) будет проверять, что changedByUserId имеет роль Engineer и принадлежит компании-застройщику, к которой относится дефект.
+        // Но для упрощения сейчас оставим как есть, а проверку доступа сделаем в контроллере (получим companyId текущего пользователя и проверим через GetDefectByIdForEngineerAsync).
+
+        public async Task UpdateDefectStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId)
+        {
+            var defect = await _defectRepository.GetByIdWithDetailsAsync(defectId);
+            await _defectRepository.UpdateDefectStatusAsync(defectId, newStatus, changedByUserId);
+
+            if (defect != null)
+            {
+                string title = $"Status changed to {newStatus}";
+                string message = $"Defect '{defect.Title}' in {defect.Premise?.Number} status updated to {newStatus}.";
+
+                if (defect.CreatedByUserId != changedByUserId)
+                    await _notificationService.NotifyAsync(defect.CreatedByUserId, title, message);
+
+                if (defect.AssignedToUserId.HasValue && defect.AssignedToUserId != changedByUserId)
+                    await _notificationService.NotifyAsync(defect.AssignedToUserId.Value, title, message);
+            }
+        }
+
+        public async Task<List<Company>> GetContractorCompaniesAsync()
+        {
+            return await _defectRepository.GetContractorCompaniesAsync();
+        }
+
+        public async Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId)
+        {
+            return await _defectRepository.GetUsersByRoleAndCompanyAsync(role, companyId);
+        }
+
+
         #endregion
     }
 }

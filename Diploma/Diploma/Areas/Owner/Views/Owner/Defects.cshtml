@@ -11,10 +11,13 @@
 
 }
 
-<div class="actions">
-    <button class="create-btn" onclick="openModal('@Url.Action("CreateDefect")')">
-        Report New Defect
-    </button>
+<div class="filter-actions">
+    <div class="filter-form"></div>
+    <div class="actions">
+        <button class="create-btn" onclick="openModal('@Url.Action("CreateDefect", "Owner", new { area = "Owner" })')">
+            Report New Defect
+        </button>
+    </div>
 </div>
 
 @Html.Partial("_Alerts")
@@ -49,11 +52,9 @@ else
                 <tbody>
                     @foreach (var defect in Model)
                     {
-                        <tr>
+                        <tr data-url="@Url.Action("DefectDetails", new { id = defect.Id })" style="cursor:pointer">
                             <td>
-                                <a href="@Url.Action("DefectDetails", new { id = defect.Id })" class="link-info">
-                                    @defect.Title
-                                </a>
+                                <span>@defect.Title</span>
                                 <br />
                                 <small class="text-muted">
                                     <i data-lucide="message-square" style="width: 14px; height: 14px;"></i> @defect.CommentCount
@@ -222,10 +223,18 @@ else
             default: return "priority-medium";
         }
     }
+
 }
 
 @section Scripts {
     <script>
         lucide.createIcons();
+
+        // Клик по строке таблицы
+        document.querySelectorAll('tr[data-url]').forEach(function (row) {
+            row.addEventListener('click', function (e) {
+                window.location.href = this.getAttribute('data-url');
+            });
+        });
     </script>
 }

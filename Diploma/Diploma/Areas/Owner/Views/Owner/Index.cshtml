@@ -2,6 +2,10 @@
 @using Diploma.Models
 @{
     ViewBag.Title = "Dashboard";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", "Dashboard")
+     };
 }
 
     <h2 style="margin-top:0; font-weight:600; color: var(--text-color);">

@@ -118,15 +118,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="~/Content/css/base.css" rel="stylesheet">
-    <link href="~/Content/css/modal.css" rel="stylesheet">
-    <link href="~/Content/css/details.css" rel="stylesheet">
-    <link href="~/Content/css/multiselect.css" rel="stylesheet">
-    <link href="~/Content/css/table.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -135,8 +130,13 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="~/Scripts/multiselect.js"></script>
     <script src="~/Scripts/change-language.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link href="~/Content/css/modal.css" rel="stylesheet">
+    <link href="~/Content/css/base.css" rel="stylesheet">
+
+    <link href="~/Content/css/details.css" rel="stylesheet">
+    <link href="~/Content/css/multiselect.css" rel="stylesheet">
+    <link href="~/Content/css/table.css" rel="stylesheet">
 </head>
 
 <body class="@(ViewBag.Theme == "dark" ? "dark" : "")">
@@ -186,8 +186,12 @@
                                 <img src="https://flagcdn.com/kr.svg" width="16"> 한국어
                             </div>
                         </div>
-                        <div class="dropdown-item" onclick="location.href='@Url.Action("Logout", "Auth", new { area = "" })'"><i data-lucide="log-out"></i> Logout</div>
-                    </div>
+                        <form action="@Url.Action("Logout", "Auth", new { area = "" })" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="dropdown-item" style="border:none;background:none;cursor:pointer;width:100%;text-align:left;">
+                                <i data-lucide="log-out"></i> @Localization.Logout
+                            </button>
+                        </form>                    </div>
                 </div>
             </div>
         </header>

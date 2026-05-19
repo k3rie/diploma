@@ -126,6 +126,9 @@
   <data name="Defects" xml:space="preserve">
     <value>Defects</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>

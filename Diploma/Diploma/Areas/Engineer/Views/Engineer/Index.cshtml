@@ -1,0 +1,225 @@
+﻿@model Diploma.Models.DTOs.EngineerDashboardDto
+@using Diploma.Models
+@{
+    ViewBag.Title = "Engineer Dashboard";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Engineer/Engineer/Index", "Dashboard")
+    };
+}
+
+<div>
+    <h2 class="mb-4" style="font-weight:600; color: var(--text-color);">Welcome, @User.Identity.Name</h2>
+
+    <!-- Карточки статистики -->
+    <div class="row g-3 mb-5">
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card card border-0 shadow-sm h-100">
+                <div class="card-body d-flex flex-column">
+                    <div class="stat-value">@Model.TotalDefects</div>
+                    <div class="stat-label">Total Defects</div>
+                    <i data-lucide="alert-triangle" class="stat-icon opacity-25 ms-auto"></i>
+                </div>
+            </div>
+        </div>
+        @foreach (var kvp in Model.CountByStatus)
+        {
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="stat-card card border-0 shadow-sm h-100 card-status-@kvp.Key.ToLower()">
+                    <div class="card-body d-flex flex-column">
+                        <div class="stat-value">@kvp.Value</div>
+                        <div class="stat-label">@kvp.Key</div>
+                        <i data-lucide="@GetStatusIcon(kvp.Key)" class="stat-icon opacity-25 ms-auto"></i>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card card border-0 shadow-sm h-100 card-overdue">
+                <div class="card-body d-flex flex-column">
+                    <div class="stat-value">@Model.OverdueCount</div>
+                    <div class="stat-label">Overdue</div>
+                    <i data-lucide="clock" class="stat-icon opacity-25 ms-auto"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card card border-0 shadow-sm h-100 card-avgfix">
+                <div class="card-body d-flex flex-column">
+                    <div class="stat-value">@(Model.AverageFixTime?.ToString("F1") ?? "—")</div>
+                    <div class="stat-label">Avg. fix days</div>
+                    <i data-lucide="timer" class="stat-icon opacity-25 ms-auto"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Графики -->
+    <div class="row g-4">
+        <div class="col-12 col-lg-6">
+            <section class="section-info chart-box">
+                <h3 class="mb-3">Defects by Status</h3>
+                <div class="chart-container">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </section>
+        </div>
+        <div class="col-12 col-lg-6">
+            <section class="section-info chart-box">
+                <h3 class="mb-3">Defects by Priority</h3>
+                <div class="chart-container">
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stat-card {
+        border-radius: 16px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+        }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: var(--chart-label);
+        text-transform: capitalize;
+    }
+
+    .stat-icon {
+        width: 28px;
+        height: 28px;
+    }
+    /* Цветовые полосы слева */
+    .card-status-created {
+        border-left: 5px solid #9ca3af;
+    }
+
+    .card-status-assigned {
+        border-left: 5px solid #3b82f6;
+    }
+
+    .card-status-inprogress {
+        border-left: 5px solid #f59e0b;
+    }
+
+    .card-status-fixed {
+        border-left: 5px solid #10b981;
+    }
+
+    .card-status-confirmed {
+        border-left: 5px solid #6366f1;
+    }
+
+    .card-status-rejected {
+        border-left: 5px solid #ef4444;
+    }
+
+    .card-overdue {
+        border-left: 5px solid #ef4444;
+    }
+
+    .card-avgfix {
+        border-left: 5px solid #10b981;
+    }
+
+    .chart-box {
+        background: var(--card-bg);
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .chart-container {
+        position: relative;
+        height: 300px;
+    }
+
+    @@media (max-width: 576px) {
+        .stat-value {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+@functions {
+    string GetStatusIcon(string status)
+    {
+        switch (status)
+        {
+            case "Created": return "circle";
+            case "Assigned": return "user-check";
+            case "InProgress": return "loader";
+            case "Fixed": return "check-circle";
+            case "Confirmed": return "check-square";
+            case "Rejected": return "x-circle";
+            default: return "circle";
+        }
+    }
+}
+
+@section Scripts {
+    <script>
+        lucide.createIcons();
+        const statusData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CountByStatus));
+        const priorityData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CountByPriority));
+
+        const statusLabels = Object.keys(statusData);
+        const statusValues = Object.values(statusData);
+        const statusColors = statusLabels.map(l => {
+            switch(l) {
+                case 'Created': return '#9ca3af';
+                case 'Assigned': return '#3b82f6';
+                case 'InProgress': return '#f59e0b';
+                case 'Fixed': return '#10b981';
+                case 'Confirmed': return '#6366f1';
+                case 'Rejected': return '#ef4444';
+                default: return '#d1d5db';
+            }
+        });
+
+        new Chart(document.getElementById('statusChart'), {
+            type: 'doughnut',
+            data: { labels: statusLabels, datasets: [{ data: statusValues, backgroundColor: statusColors, borderWidth: 0 }] },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        const priorityLabels = Object.keys(priorityData);
+        const priorityValues = Object.values(priorityData);
+        const priorityColors = priorityLabels.map(p => {
+            switch(p) {
+                case 'Low': return '#10b981';
+                case 'Medium': return '#f59e0b';
+                case 'High': return '#ef4444';
+                case 'Critical': return '#b91c1c';
+                default: return '#d1d5db';
+            }
+        });
+        new Chart(document.getElementById('priorityChart'), {
+            type: 'bar',
+            data: { labels: priorityLabels, datasets: [{ data: priorityValues, backgroundColor: priorityColors, borderWidth: 0 }] },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+}

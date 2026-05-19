@@ -22,5 +22,6 @@ namespace Diploma.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Language ?? "en");
             base.OnActionExecuting(filterContext);
         }
+
     }
 }
