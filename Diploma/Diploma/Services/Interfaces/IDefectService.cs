@@ -2,6 +2,7 @@
 using Diploma.Models.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Diploma.Services.Interfaces
 {
@@ -26,6 +27,7 @@ namespace Diploma.Services.Interfaces
         Task UpdateDefectStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId);
         Task<List<Company>> GetContractorCompaniesAsync();
         Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId);
+        Task MarkDefectFixedWithPhotosAsync(int defectId, int userId, IEnumerable<HttpPostedFileBase> photos);
     }
 
     public class PremiseDto

@@ -117,28 +117,244 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptedByOwner" xml:space="preserve">
+    <value>Accepted By Owner</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
+  </data>
+  <data name="AfterFix" xml:space="preserve">
+    <value>After Fix</value>
+  </data>
+  <data name="Apt" xml:space="preserve">
+    <value>Apt.</value>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="AssignContractor" xml:space="preserve">
+    <value>Assign Contractor</value>
+  </data>
+  <data name="Assigned" xml:space="preserve">
+    <value>Assigned</value>
+  </data>
+  <data name="AssignedTo" xml:space="preserve">
+    <value>Assigned To</value>
+  </data>
+  <data name="AssignedUser" xml:space="preserve">
+    <value>Assigned User</value>
+  </data>
+  <data name="Avgfixdays" xml:space="preserve">
+    <value>Avg. fix days</value>
+  </data>
+  <data name="Awaitingownerconfirmation" xml:space="preserve">
+    <value>Awaiting owner confirmation</value>
+  </data>
+  <data name="BacktoList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="BeforeFix" xml:space="preserve">
+    <value>Before Fix</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Changed By</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Chart</value>
   </data>
+  <data name="ClosedAt" xml:space="preserve">
+    <value>Closed At</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>comments</value>
+  </data>
+  <data name="Confirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="ConfirmFix" xml:space="preserve">
+    <value>Confirm Fix</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="ContractorCompany" xml:space="preserve">
+    <value>Contractor Company</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="Critical" xml:space="preserve">
+    <value>Critical</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DefectInformation" xml:space="preserve">
+    <value>Defect Information</value>
+  </data>
   <data name="Defects" xml:space="preserve">
     <value>Defects</value>
+  </data>
+  <data name="DefectsbyPriority" xml:space="preserve">
+    <value>Defects by Priority</value>
+  </data>
+  <data name="DefectsbyStatus" xml:space="preserve">
+    <value>Defects by Status</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DesiredCompletionDate" xml:space="preserve">
+    <value>Desired Completion Date</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>DueDate</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+  <data name="Iwillfixthisdefectmyself" xml:space="preserve">
+    <value>I will fixt his defect myself</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="MarkasFixed" xml:space="preserve">
+    <value>Mark as Fixed</value>
+  </data>
+  <data name="MarkFixed" xml:space="preserve">
+    <value>Mark Fixed</value>
+  </data>
+  <data name="Maximum10MBeach" xml:space="preserve">
+    <value>Maximum 10 MB each</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="MyDefects" xml:space="preserve">
+    <value>My Defects</value>
+  </data>
+  <data name="MyPremises" xml:space="preserve">
+    <value>My Premises</value>
+  </data>
+  <data name="Nocommentsyet" xml:space="preserve">
+    <value>No comments yet</value>
+  </data>
+  <data name="Nophotosuploaded" xml:space="preserve">
+    <value>No photos uploaded</value>
+  </data>
+  <data name="Nostatuschangesrecorded" xml:space="preserve">
+    <value>No status changes recorded</value>
+  </data>
+  <data name="Notset" xml:space="preserve">
+    <value>Not set</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Overdue" xml:space="preserve">
+    <value>Overdue</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Owner</value>
   </data>
+  <data name="photos" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="PhotosoftheDefect" xml:space="preserve">
+    <value>Photos of the Defect</value>
+  </data>
+  <data name="Premise" xml:space="preserve">
+    <value>Premise</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="ReportNewDefect" xml:space="preserve">
+    <value>Report New Defect</value>
+  </data>
+  <data name="SelectContractor" xml:space="preserve">
+    <value>-- Select Contractor --</value>
+  </data>
+  <data name="SelectPremise" xml:space="preserve">
+    <value>-- Select Premise --</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>-- Select User --</value>
+  </data>
+  <data name="StartWork" xml:space="preserve">
+    <value>Start Work</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StatusHistory" xml:space="preserve">
+    <value>Status History</value>
+  </data>
+  <data name="SubmitDefect" xml:space="preserve">
+    <value>Submit Defect</value>
+  </data>
+  <data name="Takethetask" xml:space="preserve">
+    <value>Take the task</value>
+  </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="TotalDefects" xml:space="preserve">
+    <value>Total Defects</value>
+  </data>
+  <data name="UploadAfterFixPhotos" xml:space="preserve">
+    <value>Upload After-Fix Photos</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="Youcanselectmultiplephotos" xml:space="preserve">
+    <value>You can select multiple photos</value>
   </data>
 </root>

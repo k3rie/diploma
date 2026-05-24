@@ -23,12 +23,12 @@
                 </li>
             </ul>
 
-            <h3 class="menu-title">Actions</h3>
+            <h3 class="menu-title">@Localization.Actions</h3>
             <ul>
                 <li>
                     <a href="@Url.Action("Defects")">
                         <i data-lucide="arrow-left"></i>
-                        <span class="menu-text">Back to List</span>
+                        <span class="menu-text">@Localization.BacktoList</span>
                     </a>
                 </li>
 
@@ -37,13 +37,13 @@
                     <li>
                         <a href="@Url.Action("EditDefect", new { id = Model.Id })">
                             <i data-lucide="edit"></i>
-                            <span class="menu-text">Edit</span>
+                            <span class="menu-text">@Localization.Edit</span>
                         </a>
                     </li>
                     <li>
                         <a onclick="confirmAndSubmit('@Url.Action("DeleteDefect", "Owner", new { id = Model.Id })')" style="cursor:pointer">
                             <i data-lucide="trash-2"></i>
-                            <span class="menu-text">Delete</span>
+                            <span class="menu-text">@Localization.Delete</span>
                         </a>
                     </li>
                 }
@@ -53,7 +53,7 @@
                     <li>
                         <a onclick="confirmAndSubmit('@Url.Action("ConfirmDefectFix", "Owner", new { id = Model.Id })')" style="cursor:pointer">
                             <i data-lucide="check-circle"></i>
-                            <span class="menu-text">Confirm Fix</span>
+                            <span class="menu-text">@Localization.ConfirmFix</span>
                         </a>
                     </li>
                 }

@@ -1,4 +1,5 @@
 ﻿@model Diploma.Models.DTOs.DefectCreateDto
+@using Diploma.Resources
 @{
     Layout = null;
 }
@@ -10,49 +11,49 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <section class="section-info">
-            <h2>Report New Defect</h2>
+            <h2>@Localization.ReportNewDefect</h2>
             <div class="info-grid-2">
                 <div class="info-item">
-                    <span class="label required-field">Premise</span>
+                    <span class="label required-field">@Localization.Premise</span>
                     <span class="value">
-                        @Html.DropDownListFor(m => m.PremisesId, (SelectList)ViewBag.Premises, "-- Select Premise --", new { @class = "form-control", required = "required" })
+                        @Html.DropDownListFor(m => m.PremisesId, (SelectList)ViewBag.Premises, Localization.SelectPremise, new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(m => m.PremisesId, "", new { @class = "text-danger" })
                     </span>
                 </div>
                 <div class="info-item">
-                    <span class="label required-field">Title</span>
+                    <span class="label required-field">@Localization.Title</span>
                     <span class="value">
-                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "E.g., Crack in the wall, Water leak, Broken window...", maxlength = "255" })
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", maxlength = "255" })
                         @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </span>
                 </div>
                 <div class="info-item" style="grid-column: span 2;">
-                    <span class="label">Description</span>
+                    <span class="label">@Localization.Description</span>
                     <span class="value">
-                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5", placeholder = "Describe the defect in detail..." })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </span>
                 </div>
 
                 <div class="info-item">
-                    <span class="label">Priority</span>
+                    <span class="label">@Localization.Priority</span>
                     <span class="value">
                         @Html.EnumDropDownListFor(m => m.Priority, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
                     </span>
                 </div>
                 <div class="info-item">
-                    <span class="label">Desired Completion Date</span>
+                    <span class="label">@Localization.DesiredCompletionDate</span>
                     <span class="value">
                         @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd") })
                         @Html.ValidationMessageFor(m => m.DueDate, "", new { @class = "text-danger" })
                     </span>
                 </div>
                 <div class="info-item" style="grid-column: span 2;">
-                    <span class="label">Photos of the Defect</span>
+                    <span class="label">@Localization.PhotosoftheDefect</span>
                     <span class="value">
                         <input type="file" name="Photos" multiple accept="image/*" class="form-control-file" id="photosInput" />
-                        <small class="form-text text-muted">You can select multiple photos. Maximum 10MB each.</small>
+                        <small class="form-text text-muted">@Localization.Youcanselectmultiplephotos. @Localization.Maximum10MBeach.</small>
                         <div id="photoPreview" class="row mt-3"></div>
                     </span>
                 </div>
@@ -61,7 +62,7 @@
 
         <div class="form-actions-sticky">
             <button type="submit" class="apply-btn">
-                <i data-lucide="save"></i> Submit Defect
+                <i data-lucide="save"></i> @Localization.SubmitDefect
             </button>
         </div>
     }

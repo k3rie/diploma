@@ -1,10 +1,11 @@
 ﻿@model Diploma.Models.DTOs.AssignDefectDto
+    @using Diploma.Resources
 @{
     ViewBag.Title = "Assign Defect";
     ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
 {
-        new Diploma.Models.BreadCrumb("/Engineer/Defects", "Defects"),
-        new Diploma.Models.BreadCrumb("", "Assign")
+        new Diploma.Models.BreadCrumb("/Engineer/Defects", Localization.Defects),
+        new Diploma.Models.BreadCrumb("", Localization.Assign)
     };
 }
 
@@ -14,32 +15,32 @@
     @Html.HiddenFor(m => m.DefectId)
 
     <section class="section-info">
-        <h2>Assign Contractor</h2>
+        <h2>@Localization.AssignContractor</h2>
         <div class="info-grid">
             <div class="info-item">
-                <span class="label">Contractor Company</span>
+                <span class="label">@Localization.ContractorCompany</span>
                 <span class="value">
                     @Html.DropDownListFor(m => m.ContractorCompanyId,
                         (SelectList)ViewBag.Contractors,
-                        "-- Select Contractor --",
+                        Localization.SelectContractor,
                         new { @class = "form-control", id = "contractor-select" })
                 </span>
             </div>
             <div class="info-item">
-                <span class="label">Assigned User</span>
+                <span class="label">@Localization.AssignedUser</span>
                 <span class="value">
                     @Html.DropDownListFor(m => m.AssignedToUserId,
                         (SelectList)ViewBag.ContractorUsers,
-                        "-- Select User --",
+                        @Localization.SelectUser,
                         new { @class = "form-control", id = "user-select" })
                 </span>
             </div>
             <div class="info-item" style="grid-column: span 2;">
-                <span class="label">Take the task</span>
+                <span class="label">@Localization.Takethetask</span>
                 <span class="value">
                     <label>
                         @Html.CheckBoxFor(m => m.AssignToMe, new { id = "assign-to-me" })
-                        I will fix this defect myself
+                        @Localization.Iwillfixthisdefectmyself
                     </label>
                 </span>
             </div>
@@ -47,7 +48,7 @@
     </section>
     <div class="form-actions">
         <button type="submit" class="apply-btn">
-            <i data-lucide="user-check"></i> Assign
+            <i data-lucide="user-check"></i> @Localization.Assign
         </button>
     </div>
 }
@@ -62,7 +63,7 @@
         function populateUserSelect(users) {
             const select = $('#user-select');
             select.empty();
-            select.append('<option value="">-- Select User --</option>');
+            select.append('<option value="">@Localization.SelectUser</option>');
             $.each(users, function(i, user) {
                 select.append($('<option>', { value: user.Value, text: user.Text }));
             });

@@ -213,19 +213,19 @@
                         <li class="@(currentAction == "Index" && currentController == "Owner" ? "active" : "")">
                             <a href="@Url.Action("Index", "Owner", new { area = "Owner" })">
                                 <i data-lucide="layout-dashboard"></i>
-                                <span class="menu-text">Dashboard</span>
+                                <span class="menu-text">@Localization.Dashboard</span>
                             </a>
                         </li>
                         <li class="@(currentAction == "MyPremises" ? "active" : "")">
                             <a href="@Url.Action("MyPremises", "Owner", new { area = "Owner" })">
                                 <i data-lucide="building"></i>
-                                <span class="menu-text">My Premises</span>
+                                <span class="menu-text">@Localization.MyPremises</span>
                             </a>
                         </li>
                         <li class="@(currentAction == "Defects" || currentAction == "CreateDefect" || currentAction == "DefectDetails" || currentAction == "EditDefect" ? "active" : "")">
                             <a href="@Url.Action("Defects", "Owner", new { area = "Owner" })">
                                 <i data-lucide="alert-triangle"></i>
-                                <span class="menu-text">My Defects</span>
+                                <span class="menu-text">@Localization.MyDefects</span>
                             </a>
                         </li>
                     </ul>

@@ -159,5 +159,27 @@ namespace Diploma.Areas.Engineer.Controllers
             });
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult MarkFixed(int defectId)
+        {
+            return PartialView("_MarkFixed", new MarkFixedDto { DefectId = defectId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> MarkFixed(MarkFixedDto model)
+        {
+            var user = UserIdentityHelper.GetCurrentUser();
+            try
+            {
+                await _defectService.MarkDefectFixedWithPhotosAsync(model.DefectId, user.UserId, model.Photos);
+                TempData["SuccessMessage"] = "Defect fixed successfully.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return RedirectToAction("DefectDetails", new { id = model.DefectId });
+        }
     }
 }

@@ -117,28 +117,244 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptedByOwner" xml:space="preserve">
+    <value>Принято владельцем</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Действия</value>
+  </data>
+  <data name="AfterFix" xml:space="preserve">
+    <value>После исправления</value>
+  </data>
+  <data name="Apt" xml:space="preserve">
+    <value>кв.</value>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Назначать</value>
+  </data>
+  <data name="AssignContractor" xml:space="preserve">
+    <value>Назначить подрядчика</value>
+  </data>
+  <data name="Assigned" xml:space="preserve">
+    <value>Назначен</value>
+  </data>
+  <data name="AssignedTo" xml:space="preserve">
+    <value>Назначено</value>
+  </data>
+  <data name="AssignedUser" xml:space="preserve">
+    <value>Назначенный пользователь</value>
+  </data>
+  <data name="Avgfixdays" xml:space="preserve">
+    <value>Среднее кол-во дней на исправление</value>
+  </data>
+  <data name="Awaitingownerconfirmation" xml:space="preserve">
+    <value>Ожидаем подтверждения владельца</value>
+  </data>
+  <data name="BacktoList" xml:space="preserve">
+    <value>Вернуться к списку</value>
+  </data>
+  <data name="BeforeFix" xml:space="preserve">
+    <value>До исправления</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменено</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Изменено кем</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Диаграмма</value>
   </data>
+  <data name="ClosedAt" xml:space="preserve">
+    <value>Закрыто в</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>комментарии</value>
+  </data>
+  <data name="Confirmed" xml:space="preserve">
+    <value>Подтвержден</value>
+  </data>
+  <data name="ConfirmFix" xml:space="preserve">
+    <value>Подтвердить исправление</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Подрядчик</value>
+  </data>
+  <data name="ContractorCompany" xml:space="preserve">
+    <value>Подрядная компания</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Создан</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Создано</value>
+  </data>
+  <data name="Critical" xml:space="preserve">
+    <value>Критический</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Дашборд</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DefectInformation" xml:space="preserve">
+    <value>Информация о дефекте</value>
+  </data>
   <data name="Defects" xml:space="preserve">
     <value>Дефект</value>
+  </data>
+  <data name="DefectsbyPriority" xml:space="preserve">
+    <value>Дефекты по приоритету</value>
+  </data>
+  <data name="DefectsbyStatus" xml:space="preserve">
+    <value>Дефекты по статусу</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DesiredCompletionDate" xml:space="preserve">
+    <value>Желаемая дата завершения</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Сделать до</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Исправлен</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Этаж</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>Высокий</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>В работе</value>
+  </data>
+  <data name="Iwillfixthisdefectmyself" xml:space="preserve">
+    <value>Я сам исправлю дефект</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Расположение</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Выйти</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Низкий</value>
+  </data>
+  <data name="MarkasFixed" xml:space="preserve">
+    <value>Отметить как исправленное</value>
+  </data>
+  <data name="MarkFixed" xml:space="preserve">
+    <value>Отметить исправлено</value>
+  </data>
+  <data name="Maximum10MBeach" xml:space="preserve">
+    <value>Максимум 10 МБ каждый</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Средний</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Меню</value>
   </data>
+  <data name="MyDefects" xml:space="preserve">
+    <value>Мои дефекты</value>
+  </data>
+  <data name="MyPremises" xml:space="preserve">
+    <value>Мои помещения</value>
+  </data>
+  <data name="Nocommentsyet" xml:space="preserve">
+    <value>Комментариев пока нет</value>
+  </data>
+  <data name="Nophotosuploaded" xml:space="preserve">
+    <value>Фотографии не загружены</value>
+  </data>
+  <data name="Nostatuschangesrecorded" xml:space="preserve">
+    <value>Изменения статуса не зафиксированы</value>
+  </data>
+  <data name="Notset" xml:space="preserve">
+    <value>Не установлено</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="Overdue" xml:space="preserve">
+    <value>Просрочено</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>
   </data>
+  <data name="photos" xml:space="preserve">
+    <value>фотографии</value>
+  </data>
+  <data name="PhotosoftheDefect" xml:space="preserve">
+    <value>Фотографии дефекта</value>
+  </data>
+  <data name="Premise" xml:space="preserve">
+    <value>Помещение</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Приоритет</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Отклонен</value>
+  </data>
+  <data name="ReportNewDefect" xml:space="preserve">
+    <value>Сообщить о новом дефекте</value>
+  </data>
+  <data name="SelectContractor" xml:space="preserve">
+    <value>-- Выбор подрядчика --</value>
+  </data>
+  <data name="SelectPremise" xml:space="preserve">
+    <value>-- Выберите помещение --</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>-- Выберите пользователя --</value>
+  </data>
+  <data name="StartWork" xml:space="preserve">
+    <value>Начать работу</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="StatusHistory" xml:space="preserve">
+    <value>История статуса</value>
+  </data>
+  <data name="SubmitDefect" xml:space="preserve">
+    <value>Сообщить о дефекте</value>
+  </data>
+  <data name="Takethetask" xml:space="preserve">
+    <value>Взять задание</value>
+  </data>
   <data name="Test" xml:space="preserve">
     <value>Тест</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="TotalDefects" xml:space="preserve">
+    <value>Всего дефектов</value>
+  </data>
+  <data name="UploadAfterFixPhotos" xml:space="preserve">
+    <value>Загрузить фотографии после исправления</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать</value>
+  </data>
+  <data name="Youcanselectmultiplephotos" xml:space="preserve">
+    <value>Вы можете выбрать несколько фотографий</value>
   </data>
 </root>

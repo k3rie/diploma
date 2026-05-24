@@ -20,11 +20,11 @@
                 </li>
             </ul>
 
-            <h3 class="menu-title">Actions</h3>
+            <h3 class="menu-title">@Localization.Actions</h3>
             <ul>
                 <li>
                     <a href="@Url.Action("Defects")">
-                        <i data-lucide="arrow-left"></i> Back to List
+                        <i data-lucide="arrow-left"></i> @Localization.BacktoList
                     </a>
                 </li>
                 @if (defect != null)
@@ -33,7 +33,7 @@
                     {
                         <li>
                             <a href="@Url.Action("Assign", new { id = defect.Id })">
-                                <i data-lucide="user-check"></i> Assign
+                                <i data-lucide="user-check"></i> @Localization.Assign
                             </a>
                         </li>
                     }
@@ -41,21 +41,21 @@
                     {
                         <li>
                             <a href="javascript:void(0)" onclick="changeStatus('@Url.Action("ChangeStatus", "Engineer", new { defectId = defect.Id, newStatus = DefectStatus.InProgress })')">
-                                <i data-lucide="play"></i> Start Work
+                                <i data-lucide="play"></i> @Localization.StartWork
                             </a>
                         </li>
                     }
                     if (defect.Status == DefectStatus.InProgress)
                     {
                         <li>
-                            <a href="javascript:void(0)" onclick="changeStatus('@Url.Action("ChangeStatus", "Engineer", new { defectId = defect.Id, newStatus = DefectStatus.Fixed })')">
-                                <i data-lucide="check"></i> Mark Fixed
+                            <a href="javascript:void(0)" onclick="openModal('@Url.Action("MarkFixed", "Engineer", new { defectId = defect.Id })')">
+                                <i data-lucide="check"></i> @Localization.MarkFixed
                             </a>
                         </li>
                     }
                     if (defect.Status == DefectStatus.Fixed)
                     {
-                        <li><span class="menu-text text-muted">Awaiting owner confirmation</span></li>
+                        <li><span class="menu-text text-muted">@Localization.Awaitingownerconfirmation</span></li>
                     }
                 }
             </ul>

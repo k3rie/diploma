@@ -217,6 +217,7 @@
     <Compile Include="Models\DTOs\DefectCreateDto.cs" />
     <Compile Include="Models\DTOs\EngineerDashboardDto.cs" />
     <Compile Include="Models\DTOs\LoginResultDto.cs" />
+    <Compile Include="Models\DTOs\MarkFixedDto.cs" />
     <Compile Include="Models\DTOs\OwnerDashboardDto.cs" />
     <Compile Include="Models\DTOs\UserAuthDto.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -337,6 +338,7 @@
     <Content Include="Areas\Engineer\Views\Engineer\Index.cshtml" />
     <Content Include="Areas\Engineer\Views\Shared\_Alerts.cshtml" />
     <Content Include="Areas\Engineer\Views\Shared\_NotificationBadge.cshtml" />
+    <Content Include="Areas\Engineer\Views\Shared\_MarkFixed.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\async-search.js" />

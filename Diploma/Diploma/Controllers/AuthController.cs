@@ -40,7 +40,6 @@ namespace Diploma.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginRequest model, string returnUrl)
         {
-            // Если пользователь уже авторизован - перенаправляем
             if (User.Identity.IsAuthenticated)
             {
                 var currentUser = UserIdentityHelper.GetCurrentUser();
@@ -64,7 +63,6 @@ namespace Diploma.Controllers
                 return View(model);
             }
 
-            // Создаем ticket с данными пользователя
             var userData = $"{result.User.Id}|{(int)result.User.Role}|{result.User.CompanyId}";
 
             var ticket = new FormsAuthenticationTicket(
@@ -81,7 +79,6 @@ namespace Diploma.Controllers
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             Response.Cookies.Add(authCookie);
 
-            // Перенаправление после входа
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);

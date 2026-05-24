@@ -23,18 +23,15 @@ namespace Diploma.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Указываем схему public для PostgreSQL (вместо dbo)
             modelBuilder.HasDefaultSchema("public");
 
-            // Конфигурация точности для decimal полей
             modelBuilder.Entity<Premise>()
                 .Property(p => p.Area)
                 .HasPrecision(18, 2)
                 .IsOptional();
 
-            // Конфигурация User
             modelBuilder.Entity<User>()
-                .ToTable("Users", "public");  // Явно указываем таблицу и схему
+                .ToTable("Users", "public");  
 
             modelBuilder.Entity<Company>()
                 .ToTable("Companies", "public");

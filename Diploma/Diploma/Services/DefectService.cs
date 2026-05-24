@@ -73,7 +73,6 @@ namespace Diploma.Services
 
             var createdDefect = await _defectRepository.CreateAsync(defect);
 
-            // Upload photos if any
             if (model.Photos != null && model.Photos.Any())
             {
                 foreach (var photo in model.Photos)
@@ -309,9 +308,9 @@ namespace Diploma.Services
             return new EngineerDashboardDto
             {
                 TotalDefects = defects.Count,
-                CountByStatus = defects.GroupBy(d => d.Status.ToString())
+                CountByStatus = defects.GroupBy(d => d.Status.GetDisplayName())
                                        .ToDictionary(g => g.Key, g => g.Count()),
-                CountByPriority = defects.GroupBy(d => d.Priority.ToString())
+                CountByPriority = defects.GroupBy(d => d.Priority.GetDisplayName())
                                          .ToDictionary(g => g.Key, g => g.Count()),
                 OverdueCount = defects.Count(d => d.DueDate.HasValue && d.DueDate < DateTime.Now && d.Status != DefectStatus.Confirmed),
                 AverageFixTime = defects.Where(d => d.ClosedAt.HasValue)
@@ -380,7 +379,58 @@ namespace Diploma.Services
         {
             return await _defectRepository.GetUsersByRoleAndCompanyAsync(role, companyId);
         }
+        public async Task MarkDefectFixedWithPhotosAsync(int defectId, int userId, IEnumerable<HttpPostedFileBase> photos)
+        {
+            var defect = await _defectRepository.GetByIdAsync(defectId);
+            if (defect == null) throw new KeyNotFoundException("Defect not found");
+            if (defect.Status != DefectStatus.InProgress)
+                throw new InvalidOperationException("Only defects in progress can be marked fixed");
 
+            // Смена статуса
+            await _defectRepository.UpdateDefectStatusAsync(defectId, DefectStatus.Fixed, userId, "Fixed by engineer");
+
+            // Сохранение фото после исправления
+            if (photos != null)
+            {
+                foreach (var file in photos)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var media = await SaveDefectMedia(file, defectId, userId, isBeforeFix: false);
+                        await _defectRepository.AddMediaAsync(media);
+                    }
+                }
+            }
+
+            // Уведомления (можно оставить как есть или добавить)
+            var defectFull = await _defectRepository.GetByIdWithDetailsAsync(defectId);
+            if (defectFull != null)
+            {
+                await _notificationService.NotifyAsync(defectFull.CreatedByUserId, "Defect fixed", $"Defect '{defectFull.Title}' marked as fixed.");
+                if (defectFull.AssignedToUserId.HasValue && defectFull.AssignedToUserId != userId)
+                    await _notificationService.NotifyAsync(defectFull.AssignedToUserId.Value, "Defect fixed", $"Defect '{defectFull.Title}' marked as fixed.");
+            }
+        }
+
+        // Вспомогательный метод для сохранения с параметром isBeforeFix
+        private async Task<DefectMedia> SaveDefectMedia(HttpPostedFileBase file, int defectId, int userId, bool isBeforeFix = true)
+        {
+            var uploadsFolder = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/Defects/");
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+            var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileName(file.FileName)}";
+            file.SaveAs(Path.Combine(uploadsFolder, uniqueFileName));
+            return new DefectMedia
+            {
+                DefectId = defectId,
+                OriginalFileName = file.FileName,
+                StoredFileName = uniqueFileName,
+                ContentType = file.ContentType,
+                FileSize = file.ContentLength,
+                UploadedByUserId = userId,
+                IsBeforeFix = isBeforeFix,
+                UploadedAt = DateTime.Now
+            };
+        }
 
         #endregion
     }
