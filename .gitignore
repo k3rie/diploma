@@ -1,0 +1,16 @@
+# Build
+**/bin/
+**/obj/
+
+# VS
+.vs/
+*.user
+
+# NuGet
+packages/
+
+# Uploads
+**/Uploads/
+
+# App_Data
+**/App_Data/
