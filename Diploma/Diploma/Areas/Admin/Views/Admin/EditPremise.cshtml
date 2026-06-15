@@ -1,0 +1,29 @@
+﻿@model Diploma.Models.Premise
+@{
+    ViewBag.Title = "Редактирование помещения";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Objects", "Объекты"),
+        new Diploma.Models.BreadCrumb("", "Редактирование помещения")
+    };
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.ObjectId)
+    <section class="section-info">
+        <h2>Редактирование помещения</h2>
+        <div class="info-grid">
+            <div class="info-item"><span class="label">Номер</span><span class="value">@Html.TextBoxFor(m => m.Number, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Этаж</span><span class="value">@Html.TextBoxFor(m => m.Floor, new { @class = "form-control", type = "number" })</span></div>
+            <div class="info-item"><span class="label">Площадь</span><span class="value">@Html.TextBoxFor(m => m.Area, new { @class = "form-control", type = "number", step = "0.01" })</span></div>
+            <div class="info-item"><span class="label">Владелец</span><span class="value">@Html.DropDownList("OwnerId", (SelectList)ViewBag.Users, "Нет владельца", new { @class = "form-control" })</span></div>
+        </div>
+    </section>
+    <div class="form-actions">
+        <button type="submit" class="apply-btn"><i data-lucide="save"></i> Сохранить</button>
+        <a href="@Url.Action("ObjectDetails", new { id = Model.ObjectId })" class="btn btn-outline-secondary">Отмена</a>
+    </div>
+}

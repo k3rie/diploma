@@ -1,8 +1,6 @@
-﻿using Diploma.Models.DTOs;
-using System;
+﻿using Diploma.Models;
+using Diploma.Models.DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Diploma.Services.Interfaces
@@ -12,5 +10,11 @@ namespace Diploma.Services.Interfaces
         Task<UserAuthDto> GetUserByLoginAsync(string login);
         Task<bool> IsUserActiveAsync(string login);
         Task UpdateLastLoginAsync(int userId);
+
+        Task<List<User>> GetAllUsersAsync();
+        Task<User> GetUserByIdAsync(int id);
+        Task<User> CreateUserAsync(User user);
+        Task UpdateUserAsync(User user);
+        Task DeleteUserAsync(int id);
     }
 }

@@ -1,0 +1,68 @@
+﻿@model List<Diploma.Models.DTOs.DefectListDto>
+@using Diploma.Models
+@if (!Model.Any())
+{
+    <p class="text-muted">Нет дефектов</p>
+}
+else
+{
+    <div class="table-responsive">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Объект</th>
+                        <th>Помещение</th>
+                        <th>Статус</th>
+                        <th>Приоритет</th>
+                        <th>Создан</th>
+                        <th>Срок</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr>
+                            <td>@d.Title</td>
+                            <td>@d.ObjectName</td>
+                            <td>@d.PremiseNumber</td>
+                            <td><span class="status-badge @GetStatusClass(d.Status)">@Html.DisplayEnumFor(m => d.Status)</span></td>
+                            <td><span class="status-badge @GetPriorityClass(d.Priority)">@Html.DisplayEnumFor(m => d.Priority)</span></td>
+                            <td>@d.CreatedAt.ToString("dd.MM.yyyy")</td>
+                            <td>@(d.DueDate?.ToString("dd.MM.yyyy") ?? "—")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@functions {
+    private string GetStatusClass(DefectStatus status)
+    {
+        switch (status)
+        {
+            case DefectStatus.Created: return "status-new";
+            case DefectStatus.Assigned: return "status-active";
+            case DefectStatus.InProgress: return "status-inprocess";
+            case DefectStatus.Fixed: return "status-approved";
+            case DefectStatus.Confirmed: return "status-active";
+            case DefectStatus.Rejected: return "status-rejected";
+            default: return "status-new";
+        }
+    }
+
+    private string GetPriorityClass(DefectPriority priority)
+    {
+        switch (priority)
+        {
+            case DefectPriority.Low: return "priority-low";
+            case DefectPriority.Medium: return "priority-medium";
+            case DefectPriority.High: return "priority-high";
+            case DefectPriority.Critical: return "priority-critical";
+            default: return "priority-medium";
+        }
+    }
+}

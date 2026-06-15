@@ -1,0 +1,31 @@
+﻿@model Diploma.Models.Company
+@{
+    ViewBag.Title = "Редактирование компании";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Companies", "Компании"),
+        new Diploma.Models.BreadCrumb("", "Редактирование")
+    };
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <section class="section-info">
+        <h2>Редактирование</h2>
+        <div class="info-grid">
+            <div class="info-item"><span class="label">Название</span><span class="value">@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">ИНН</span><span class="value">@Html.TextBoxFor(m => m.INN, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">ОГРН</span><span class="value">@Html.TextBoxFor(m => m.OGRN, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Тип</span><span class="value">@Html.DropDownList("CompanyType", (SelectList)ViewBag.CompanyTypes, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Телефон</span><span class="value">@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Email</span><span class="value">@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Юридический адрес</span><span class="value">@Html.TextBoxFor(m => m.LegalAddress, new { @class = "form-control" })</span></div>
+        </div>
+    </section>
+    <div class="form-actions">
+        <button type="submit" class="apply-btn"><i data-lucide="save"></i> Сохранить</button>
+        <a href="@Url.Action("CompanyDetails", new { id = Model.Id })" class="btn btn-outline-secondary">Отмена</a>
+    </div>
+}

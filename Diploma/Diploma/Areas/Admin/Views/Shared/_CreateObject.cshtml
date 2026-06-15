@@ -1,0 +1,34 @@
+﻿@model Diploma.Models.ConstructionObject
+@{
+    Layout = null;
+}
+<div class="modal-body-content">
+    @using (Html.BeginForm("CreateObject", "Admin", FormMethod.Post, new { id = "createObjectForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <section class="section-info">
+            <h2>Новый объект строительства</h2>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Название</span><span class="value">@Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })</span></div>
+                <div class="info-item"><span class="label">Адрес</span><span class="value">@Html.TextBoxFor(m => m.Address, new { @class = "form-control", required = "required" })</span></div>
+                <div class="info-item"><span class="label">Застройщик</span><span class="value">@Html.DropDownList("DeveloperCompanyId", (SelectList)ViewBag.DeveloperCompanies, "Выберите застройщика", new { @class = "form-control" })</span></div>
+            </div>
+        </section>
+        <div class="form-actions-sticky">
+            <button type="submit" class="apply-btn"><i data-lucide="save"></i> Сохранить</button>
+        </div>
+    }
+</div>
+<script>
+    $('#createObjectForm').submit(function(e) {
+        e.preventDefault();
+        $.post($(this).attr('action'), $(this).serialize())
+            .done(function(resp) {
+                if (resp.success) {
+                    closeLastModal();
+                    location.reload();
+                } else alert('Ошибка при сохранении');
+            })
+            .fail(function() { alert('Ошибка сервера'); });
+    });
+</script>

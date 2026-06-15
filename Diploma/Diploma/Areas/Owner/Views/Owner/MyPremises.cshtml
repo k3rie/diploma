@@ -3,7 +3,7 @@
     ViewBag.Title = "My Premises";
     ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
 {
-     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", "Premises")
+     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", "Помещения")
      };
 }
 
@@ -28,31 +28,27 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Apt. @premise.Number</h5>
+                            <h5 class="card-title">Квартира @premise.Number</h5>
                             <h6 class="card-subtitle mb-2 text-muted">@premise.ObjectName</h6>
 
                             <ul class="list-unstyled">
-                                <li><i data-lucide="layers" style="width: 16px; height: 16px;"></i> Floor: @premise.Floor</li>
+                                <li><i data-lucide="layers" style="width: 16px; height: 16px;"></i> Этаж: @premise.Floor</li>
                                 @if (premise.Area.HasValue)
                                 {
-                                    <li><i data-lucide="maximize" style="width: 16px; height: 16px;"></i> Area: @premise.Area.Value.ToString("F2") m²</li>
+                                    <li><i data-lucide="maximize" style="width: 16px; height: 16px;"></i> Площадь: @premise.Area.Value.ToString("F2") m²</li>
                                 }
                                 <li>
-                                    <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i>
-                                    Defects:
-                                    <span class="badge badge-@(premise.DefectCount > 0 ? "warning" : "success")">
-                                        @premise.DefectCount
-                                    </span>
+                                   
                                 </li>
                             </ul>
                         </div>
                         <div class="card-footer bg-transparent">
                             <div class="btn-group w-100">
                                 <a href="@Url.Action("CreateDefect", new { premiseId = premise.Id })" class="btn btn-primary btn-sm">
-                                    <i data-lucide="plus" style="width: 16px; height: 16px;"></i> Report Defect
+                                    <i data-lucide="plus" style="width: 16px; height: 16px;"></i> Сообщить о дефекте
                                 </a>
                                 <a href="@Url.Action("Defects")" class="btn btn-outline-info btn-sm">
-                                    <i data-lucide="list" style="width: 16px; height: 16px;"></i> View All
+                                    <i data-lucide="list" style="width: 16px; height: 16px;"></i> Посмотреть все
                                 </a>
                             </div>
                         </div>

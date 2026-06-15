@@ -1,0 +1,44 @@
+﻿@model Diploma.Models.Company
+@using Diploma.Models
+@{
+    ViewBag.Title = "Компания: " + Model.Name;
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Companies", "Компании"),
+        new Diploma.Models.BreadCrumb("", Model.Name)
+    };
+}
+
+<section class="section-info">
+    <h2>Информация о компании</h2>
+    <div class="info-grid">
+        <div class="info-item"><span class="label">Название</span><span class="value">@Model.Name</span></div>
+        <div class="info-item"><span class="label">ИНН</span><span class="value">@Model.INN</span></div>
+        <div class="info-item"><span class="label">ОГРН</span><span class="value">@Model.OGRN</span></div>
+        <div class="info-item"><span class="label">Тип</span><span class="value">@GetCompanyTypeName(Model.CompanyType)</span></div>
+        <div class="info-item"><span class="label">Телефон</span><span class="value">@Model.Phone</span></div>
+        <div class="info-item"><span class="label">Email</span><span class="value">@Model.Email</span></div>
+        <div class="info-item"><span class="label">Юридический адрес</span><span class="value">@Model.LegalAddress</span></div>
+    </div>
+    <div class="mt-3">
+        <a href="@Url.Action("EditCompany", new { id = Model.Id })" class="create-btn"><i data-lucide="edit"></i> Редактировать</a>
+        <form action="@Url.Action("DeleteCompany")" method="post" style="display:inline;">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="delete-btn" onclick="return confirm('Удалить компанию?')"><i data-lucide="trash-2"></i> Удалить</button>
+        </form>
+    </div>
+</section>
+
+@functions {
+    string GetCompanyTypeName(CompanyType type)
+    {
+        switch (type)
+        {
+            case CompanyType.Developer: return "Застройщик";
+            case CompanyType.Contractor: return "Подрядчик";
+            case CompanyType.ManagementCompany: return "Управляющая компания";
+            default: return type.ToString();
+        }
+    }
+}

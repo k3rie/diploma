@@ -6,7 +6,7 @@
     ViewBag.Title = "My Defects";
     ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
 {
-     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", Localization.Defects)
+     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", "Дефекты")
      };
 
 }
@@ -70,12 +70,12 @@ else
                             </td>
                             <td>
                                 <span class="status-badge @GetStatusClass(defect.Status)">
-                                    @defect.Status
+                                    @Html.DisplayEnumFor(m=> defect.Status)
                                 </span>
                             </td>
                             <td>
                                 <span class="status-badge @GetPriorityClass(defect.Priority)">
-                                    @defect.Priority
+                                    @Html.DisplayEnumFor(m => defect.Priority)
                                 </span>
                             </td>
                             <td>
@@ -109,7 +109,7 @@ else
 
 
     <div class="mt-3">
-        <small class="text-muted">Total: @Model.Count @Localization.Defects</small>
+        <small class="text-muted">Всего: @Model.Count @Localization.Defects</small>
     </div>
 }
 

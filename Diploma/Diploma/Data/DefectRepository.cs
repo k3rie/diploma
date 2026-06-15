@@ -73,7 +73,7 @@ namespace Diploma.Data
                 NewStatus = DefectStatus.Created,
                 ChangedByUserId = defect.CreatedByUserId,
                 ChangedAt = DateTime.Now,
-                Comment = "Defect created"
+                Comment = "Дефект создан"
             };
 
             _context.DefectStatusHistory.Add(statusHistory);
@@ -227,7 +227,7 @@ namespace Diploma.Data
                 NewStatus = DefectStatus.Assigned,
                 ChangedByUserId = changedByUserId,
                 ChangedAt = DateTime.Now,
-                Comment = "Defect assigned to contractor"
+                Comment = "Дефект назначен подрядчику"
             };
             _context.DefectStatusHistory.Add(history);
             await _context.SaveChangesAsync();
@@ -270,10 +270,37 @@ namespace Diploma.Data
                 NewStatus = newStatus,
                 ChangedByUserId = changedByUserId,
                 ChangedAt = DateTime.Now,
-                Comment = comment ?? $"Status changed from {oldStatus} to {newStatus}"
+                Comment = comment ?? $"Статус изменён с {oldStatus} на {newStatus}"
             };
             _context.DefectStatusHistory.Add(history);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<Defect>> GetDefectsByAssignedUserAsync(int userId)
+        {
+            return await _context.Defects
+                .Include(d => d.Premise.ConstructionObject)
+                .Include(d => d.CreatedByUser)
+                .Include(d => d.AssignedToUser)
+                .Include(d => d.ContractorCompany)
+                .Include(d => d.Comments)
+                .Include(d => d.MediaFiles)
+                .Where(d => !d.IsDeleted && d.AssignedToUserId == userId)
+                .OrderByDescending(d => d.CreatedAt)
+                .ToListAsync();
+        }
+        public async Task<List<Defect>> GetAllDefectsAsync()
+        {
+            return await _context.Defects
+                .Include(d => d.Premise.ConstructionObject.DeveloperCompany)
+                .Include(d => d.CreatedByUser)
+                .Include(d => d.AssignedToUser)
+                .Include(d => d.ContractorCompany)
+                .Include(d => d.Comments)
+                .Include(d => d.MediaFiles)
+                .Where(d => !d.IsDeleted)
+                .OrderByDescending(d => d.CreatedAt)
+                .ToListAsync();
+        }
+
     }
 }

@@ -28,6 +28,15 @@ namespace Diploma.Services.Interfaces
         Task<List<Company>> GetContractorCompaniesAsync();
         Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId);
         Task MarkDefectFixedWithPhotosAsync(int defectId, int userId, IEnumerable<HttpPostedFileBase> photos);
+        // Получение списка дефектов подрядчика
+        Task<List<DefectListDto>> GetContractorDefectsAsync(int userId);
+        Task<DefectDetailDto> GetDefectDetailForContractorAsync(int defectId, int userId);
+        Task AddCommentAsync(int defectId, int userId, string message);
+        Task RejectFixAsync(int defectId, int userId, string comment);
+        Task<List<DefectListDto>> GetAllDefectsAsync();
+        Task<List<DefectListDto>> GetFilteredDefectsAsync(int? companyId = null, int? objectId = null, int? premiseId = null, DefectStatus? status = null);
+        Task<AdminDashboardDto> GetAdminDashboardAsync(int? companyId = null, int? objectId = null, int? status = null);
+
     }
 
     public class PremiseDto

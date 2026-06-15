@@ -1,0 +1,55 @@
+﻿@model List<Diploma.Models.User>
+@{
+    ViewBag.Title = "Пользователи";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Users", "Пользователи")
+    };
+}
+
+<div class="filter-actions">
+    <div class="filter-form"></div>
+    <div class="actions">
+        <button class="create-btn" onclick="openModal('@Url.Action("CreateUser")')">
+            <i data-lucide="plus"></i> Создать пользователя
+        </button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Логин</th>
+                    <th>ФИО</th>
+                    <th>Email</th>
+                    <th>Роль</th>
+                    <th>Компания</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("UserDetails", new { id = user.Id })">@user.UserName</a></td>
+                        <td>@user.FullName</td>
+                        <td>@user.Email</td>
+                        <td>@Html.DisplayEnumFor(m => user.Role)</td>
+                        <td>@(user.Company?.Name ?? "—")</td>
+                        <td>
+                            <form action="@Url.Action("DeleteUser")" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="delete-btn" onclick="return confirm('Удалить пользователя?')">
+                                    <i data-lucide="trash-2"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

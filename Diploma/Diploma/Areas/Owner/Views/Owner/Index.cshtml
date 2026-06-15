@@ -1,74 +1,77 @@
 ﻿@model Diploma.Models.DTOs.OwnerDashboardDto
 @using Diploma.Models
+@using Diploma.Resources
+@using Diploma.HtmlHelpers
 @{
     ViewBag.Title = "Dashboard";
     ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
 {
-     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", "Dashboard")
+     new Diploma.Models.BreadCrumb("/Admin/TradeGroup", @Localization.Dashboard)
      };
 }
 
-    <h2 style="margin-top:0; font-weight:600; color: var(--text-color);">
-        Welcome, @User.Identity.Name
-    </h2>
+<h2 style="margin-top:0; font-weight:600; color: var(--text-color);">
+    Привет, @User.Identity.Name
+</h2>
 
-    <!-- Карточки -->
-    <div class="db-cards">
-        <div class="db-card db-card--total">
-            <div class="db-card__value">@Model.TotalDefects</div>
-            <div class="db-card__label">Total Defects</div>
-            <i data-lucide="alert-triangle" class="db-card__icon"></i>
+<!-- Карточки -->
+<div class="db-cards">
+    <div class="db-card db-card--total">
+        <div class="db-card__value">@Model.TotalDefects</div>
+        <div class="db-card__label">@Localization.TotalDefects</div>
+        <i data-lucide="alert-triangle" class="db-card__icon"></i>
+    </div>
+    @foreach (var kvp in Model.CountByStatus)
+    {
+        // Получаем значение enum по строковому ключу
+        var statusEnum = (DefectStatus)Enum.Parse(typeof(DefectStatus), kvp.Key);
+        var statusDisplayName = Html.DisplayEnumFor(m=>statusEnum);
+
+        <div class="db-card db-card--@kvp.Key.ToLower()">
+            <div class="db-card__value">@kvp.Value</div>
+            <div class="db-card__label">@statusDisplayName</div>
+            <i data-lucide="@GetStatusIcon(kvp.Key)" class="db-card__icon"></i>
         </div>
-        @foreach (var kvp in Model.CountByStatus)
+    }
+</div>
+
+<div class="db-grid">
+    <!-- График -->
+
+
+    <!-- Последние дефекты -->
+    <section class="section-info db-recent">
+        <h3>Недавние дефекты</h3>
+        @if (Model.RecentDefects.Any())
         {
-            <div class="db-card db-card--@kvp.Key.ToLower()">
-                <div class="db-card__value">@kvp.Value</div>
-                <div class="db-card__label">@kvp.Key</div>
-                <i data-lucide="@GetStatusIcon(kvp.Key)" class="db-card__icon"></i>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr><th>Дефект</th><th>Статус</th><th>Дата</th></tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model.RecentDefects)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("DefectDetails", new { id = d.Id })" class="link">@d.Title</a>
+                                </td>
+                                <td>
+                                    <span class="status-badge @GetStatusClass(d.Status)">@Html.DisplayEnumFor(m=>d.Status)</span>
+                                </td>
+                                <td>@d.CreatedAt.ToString("dd.MM.yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         }
-    </div>
-
-    <div class="db-grid">
-        <!-- График -->
-        <section class="section-info db-chart">
-            <h3>Defects by Status</h3>
-            <canvas id="statusChart"></canvas>
-        </section>
-
-        <!-- Последние дефекты -->
-        <section class="section-info db-recent">
-            <h3>Recent Defects</h3>
-            @if (Model.RecentDefects.Any())
-            {
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr><th>Title</th><th>Status</th><th>Date</th></tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var d in Model.RecentDefects)
-                            {
-                                <tr>
-                                    <td>
-                                        <a href="@Url.Action("DefectDetails", new { id = d.Id })" class="link">@d.Title</a>
-                                    </td>
-                                    <td>
-                                        <span class="status-badge @GetStatusClass(d.Status)">@d.Status</span>
-                                    </td>
-                                    <td>@d.CreatedAt.ToString("dd.MM.yyyy")</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
-            else
-            {
-                <p class="text-muted">No defects yet.</p>
-            }
-        </section>
-    </div>
+        else
+        {
+            <p class="text-muted">No defects yet.</p>
+        }
+    </section>
+</div>
 
 <style>
     /* ---------- Карточки ---------- */
@@ -239,56 +242,3 @@
     }
 }
 
-@section Scripts {
-    <script>
-        lucide.createIcons();
-
-        const statusData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CountByStatus));
-        const labels = Object.keys(statusData);
-        const values = Object.values(statusData);
-        const backgroundColors = labels.map(l => {
-            switch(l) {
-                case 'Created': return '#9ca3af';
-                case 'Assigned': return '#3b82f6';
-                case 'InProgress': return '#f59e0b';
-                case 'Fixed': return '#10b981';
-                case 'Confirmed': return '#6366f1';
-                case 'Rejected': return '#ef4444';
-                default: return '#d1d5db';
-            }
-        });
-
-        const ctx = document.getElementById('statusChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: values,
-                    backgroundColor: backgroundColors,
-                    borderWidth: 0,
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            font: {
-                                size: 13,
-                                family: "'Poppins', sans-serif"
-                            },
-                            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-}

@@ -1,7 +1,42 @@
-﻿
+﻿@model Diploma.Models.AdminIndexViewModel
+@using Diploma.Resources
+@using Diploma.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Панель администратора";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Index", "Дашборд")
+    };
 }
 
-<h2>Index</h2> fdsfds admin
+<div class="filter-actions">
+    <div class="filter-form" style="display:flex; gap:12px; flex-wrap:wrap;">
+        <div style="min-width:200px;">
+            @Html.DropDownList("companyFilter", (SelectList)ViewBag.Companies, "Все компании", new { @class = "form-control", onchange = "applyFilter()" })
+        </div>
+        <div style="min-width:200px;">
+            @Html.DropDownList("objectFilter", (SelectList)ViewBag.Objects, "Все объекты", new { @class = "form-control", onchange = "applyFilter()" })
+        </div>
+        <div style="min-width:180px;">
+            @Html.DropDownList("statusFilter", (SelectList)ViewBag.Statuses, "Все статусы", new { @class = "form-control", onchange = "applyFilter()" })
+        </div>
+    </div>
+    <div class="actions"></div>
+</div>
 
+<div id="dashboardContent">
+    @Html.Partial("_DashboardContent", Model)
+</div>
+
+@section Scripts {
+    <script>
+        function applyFilter() {
+            var companyId = $('#companyFilter').val();
+            var objectId = $('#objectFilter').val();
+            var status = $('#statusFilter').val();
+            $.get('@Url.Action("FilterDefectsAndStats")', { companyId, objectId, status }, function(data) {
+                $('#dashboardContent').html(data);
+            });
+        }
+    </script>
+}

@@ -249,7 +249,43 @@ namespace Diploma.Areas.Owner.Controllers
             var premises = await _defectService.GetOwnerPremisesAsync(currentUser.UserId);
             return View(premises);
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddComment(int defectId, string message)
+        {
+            var user = UserIdentityHelper.GetCurrentUser();
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                TempData["ErrorMessage"] = "Комментарий не может быть пустым.";
+                return RedirectToAction("DefectDetails", new { id = defectId });
+            }
+            try
+            {
+                await _defectService.AddCommentAsync(defectId, user.UserId, message);
+                TempData["SuccessMessage"] = "Комментарий добавлен.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return RedirectToAction("DefectDetails", new { id = defectId });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RejectFix(int defectId, string comment)
+        {
+            var user = UserIdentityHelper.GetCurrentUser();
+            try
+            {
+                await _defectService.RejectFixAsync(defectId, user.UserId, comment);
+                TempData["SuccessMessage"] = "Исправление отклонено. Дефект возвращён в работу.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return RedirectToAction("DefectDetails", new { id = defectId });
+        }
         #endregion
     }
 }

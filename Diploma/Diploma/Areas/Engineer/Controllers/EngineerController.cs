@@ -181,5 +181,26 @@ namespace Diploma.Areas.Engineer.Controllers
             }
             return RedirectToAction("DefectDetails", new { id = model.DefectId });
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddComment(int defectId, string message)
+        {
+            var user = UserIdentityHelper.GetCurrentUser();
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                TempData["ErrorMessage"] = "Комментарий не может быть пустым.";
+                return RedirectToAction("DefectDetails", new { id = defectId });
+            }
+            try
+            {
+                await _defectService.AddCommentAsync(defectId, user.UserId, message);
+                TempData["SuccessMessage"] = "Комментарий добавлен.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return RedirectToAction("DefectDetails", new { id = defectId });
+        }
     }
 }

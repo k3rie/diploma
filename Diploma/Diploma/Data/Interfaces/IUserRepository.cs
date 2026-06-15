@@ -14,5 +14,8 @@ namespace Diploma.Data.Interfaces
         Task<User> GetByIdAsync(int id);
         Task<bool> ExistsAsync(string username);
         Task UpdateAsync(User user);
+        Task<List<User>> GetAllUsersAsync();
+        Task<User> CreateUserAsync(User user);
+        Task DeleteUserAsync(int id);
     }
 }

@@ -1,0 +1,255 @@
+﻿@model Diploma.Models.DTOs.DefectDetailDto
+@using Diploma.Models
+@using Diploma.Resources
+@{
+    Layout = "~/Areas/Contractor/Views/Shared/_DefectsLayout.cshtml";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Owner/Owner/Defects/",@Localization.Defects),
+        new Diploma.Models.BreadCrumb("/Owner/Owner/Defect/", Model.ObjectName.ToString())
+    };
+}
+
+<section class="section-info">
+    <h2>@Localization.DefectInformation</h2>
+    <div class="info-grid">
+        <div class="info-item">
+            <span class="label">@Localization.Status</span>
+            <span class="value">
+                <span class="status-badge @GetStatusClass(Model.Status)">@Html.DisplayFor(m=> Model.Status)</span>
+            </span>
+        </div>
+        <div class="info-item">
+            <span class="label">@Localization.Priority</span>
+            <span class="value">
+                <span class="status-badge @GetPriorityClass(Model.Priority)">@Model.Priority</span>
+            </span>
+        </div>
+        <div class="info-item comment-item" style="grid-column: span 2;">
+            <span class="label">@Localization.Description</span>
+            <span class="value">@(string.IsNullOrEmpty(Model.Description) ? "No description provided" : Model.Description)</span>
+        </div>
+        <div class="info-item">
+            <span class="label">@Localization.Created</span>
+            <span class="value">@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</span>
+        </div>
+        <div class="info-item">
+            <span class="label">@Localization.DueDate</span>
+            <span class="value">
+                @if (Model.DueDate.HasValue)
+                {
+                    var isOverdue = Model.DueDate < DateTime.Now && Model.Status != DefectStatus.Confirmed;
+                    <span class="@(isOverdue ? "text-danger" : "")">
+                        @Model.DueDate.Value.ToString("dd.MM.yyyy")
+                        @if (isOverdue)
+                        {
+                            <span class="status-badge status-rejected" style="margin-left: 8px;">@Localization.Overdue</span>
+                        }
+                    </span>
+                }
+                else
+                {
+            <span class="text-muted">@Localization.Notset</span>
+                }
+            </span>
+        </div>
+        <div class="info-item">
+            <span class="label">@Localization.CreatedBy</span>
+            <span class="value">@Model.CreatedByUserName</span>
+        </div>
+        @if (Model.AssignedToUserName != null || Model.ContractorCompanyName != null)
+        {
+            if (Model.AssignedToUserName != null)
+            {
+                <div class="info-item">
+                    <span class="label">@Localization.AssignedTo</span>
+                    <span class="value">@Model.AssignedToUserName</span>
+                </div>
+            }
+            if (Model.ContractorCompanyName != null)
+            {
+                <div class="info-item">
+                    <span class="label">@Localization.Contractor</span>
+                    <span class="value">@Model.ContractorCompanyName</span>
+                </div>
+            }
+        }
+        @if (Model.ClosedAt.HasValue)
+        {
+            <div class="info-item">
+                <span class="label">@Localization.ClosedAt</span>
+                <span class="value">@Model.ClosedAt.Value.ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+            if (Model.AcceptedByOwnerAt.HasValue)
+            {
+                <div class="info-item">
+                    <span class="label">@Localization.AcceptedByOwner</span>
+                    <span class="value">@Model.AcceptedByOwnerAt.Value.ToString("dd.MM.yyyy HH:mm")</span>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+<!-- Photos -->
+<section class="section-info">
+    <h2>@Localization.photos (@Model.MediaFiles.Count)</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        @if (!Model.MediaFiles.Any())
+        {
+            <p class="text-muted">@Localization.Nophotosuploaded</p>
+        }
+        else
+        {
+            foreach (var media in Model.MediaFiles)
+            {
+                <div style="width: 200px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                    <img src="@Url.Content("~/Uploads/Defects/" + media.StoredFileName)"
+                         alt="@media.OriginalFileName"
+                         style="width: 100%; height: 150px; object-fit: cover; cursor: pointer;"
+                         onclick="openImage('@Url.Content("~/Uploads/Defects/" + media.StoredFileName)')" />
+                    <div style="padding: 8px;">
+                        <small class="text-muted">
+                            @media.OriginalFileName<br />
+                            @media.UploadedAt.ToString("dd.MM.yyyy HH:mm")<br />
+                            <span class="status-badge @(media.IsBeforeFix ? "status-warning" : "status-success")">
+                                @(media.IsBeforeFix ? Localization.BeforeFix : Localization.AfterFix)
+                            </span>
+                        </small>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+<!-- Status History -->
+<section class="section-info">
+    <h2>@Localization.StatusHistory</h2>
+    @if (!Model.StatusHistory.Any())
+    {
+        <p class="text-muted">@Localization.Nostatuschangesrecorded</p>
+    }
+    else
+    {
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@Localization.Change</th>
+                        <th>@Localization.ChangedBy</th>
+                        <th>@Localization.Date</th>
+                        <th>@Localization.Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var history in Model.StatusHistory)
+                    {
+                        <tr>
+                            <td>
+                                <span class="status-badge @GetStatusClass(history.OldStatus)">@Html.DisplayFor(m=>history.OldStatus)</span>
+                                →
+                                <span class="status-badge @GetStatusClass(history.NewStatus)">@Html.DisplayFor(m => history.NewStatus)</span>
+                            </td>
+                            <td>@history.ChangedByUserName</td>
+                            <td>@history.ChangedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>@(string.IsNullOrEmpty(history.Comment) ? "—" : history.Comment)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
+
+
+<!-- Sidebar (right column) -->
+<div style="flex: 1; min-width: 280px;">
+    <!-- Location -->
+    <section class="section-info">
+        <h2>@Localization.Location</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">@Localization.Object</span>
+                <span class="value font-weight-bold">@Model.ObjectName</span>
+            </div>
+            <div class="info-item">
+                <span class="label">@Localization.Premise</span>
+                <span class="value">@Model.PremiseNumber</span>
+            </div>
+            <div class="info-item">
+                <span class="label">@Localization.Floor</span>
+                <span class="value">@Model.Floor</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments -->
+    <section class="section-info">
+        <h2>@Localization.comments (@Model.Comments.Count)</h2>
+        @if (!Model.Comments.Any())
+        {
+            <p class="text-muted">@Localization.Nocommentsyet</p>
+        }
+        else
+        {
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                @foreach (var comment in Model.Comments)
+                {
+                    <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                        <div class="d-flex justify-content-between" style="display: flex; justify-content: space-between;">
+                            <strong>@comment.UserFullName</strong>
+                            <small class="text-muted">@comment.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                        </div>
+                        <p class="mb-0 mt-1" style="margin: 4px 0 0 0;">@comment.Message</p>
+                    </div>
+                }
+            </div>
+        }
+    </section>
+    <section class="section-info">
+        <h2>Добавить комментарий</h2>
+        @using (Html.BeginForm("AddComment", "Contractor", new { defectId = Model.Id }, FormMethod.Post, new { @class = "comment-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <textarea name="message" rows="3" class="form-control" placeholder="Введите ваш комментарий..." required></textarea>
+            <button type="submit" class="apply-btn mt-2"><i data-lucide="send"></i> Отправить</button>
+        }
+    </section>
+</div>
+
+
+@functions {
+    private string GetStatusClass(DefectStatus status)
+    {
+        switch (status)
+        {
+            case DefectStatus.Created: return "status-new";
+            case DefectStatus.Assigned: return "status-active";
+            case DefectStatus.InProgress: return "status-inprocess";
+            case DefectStatus.Fixed: return "status-approved";
+            case DefectStatus.Confirmed: return "status-active";
+            case DefectStatus.Rejected: return "status-rejected";
+            default: return "status-new";
+        }
+    }
+
+    private string GetStatusClass(string status)
+    {
+        if (Enum.TryParse(status, out DefectStatus defectStatus))
+            return GetStatusClass(defectStatus);
+        return "status-new";
+    }
+
+    private string GetPriorityClass(DefectPriority priority)
+    {
+        switch (priority)
+        {
+            case DefectPriority.Low: return "priority-low";
+            case DefectPriority.Medium: return "priority-medium";
+            case DefectPriority.High: return "priority-high";
+            case DefectPriority.Critical: return "priority-critical";
+            default: return "priority-medium";
+        }
+    }
+}

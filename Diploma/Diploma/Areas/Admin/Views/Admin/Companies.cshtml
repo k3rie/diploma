@@ -1,0 +1,64 @@
+﻿@model List<Diploma.Models.Company>
+@using Diploma.Models
+@{
+    ViewBag.Title = "Компании";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Companies", "Компании")
+    };
+}
+
+<div class="filter-actions">
+    <div class="filter-form"></div>
+    <div class="actions">
+        <button class="create-btn" onclick="openModal('@Url.Action("CreateCompany")')">
+            <i data-lucide="plus"></i> Создать компанию
+        </button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>ИНН</th>
+                    <th>Тип</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("CompanyDetails", new { id = c.Id })">@c.Name</a></td>
+                        <td>@c.INN</td>
+                        <td>@GetCompanyTypeName(c.CompanyType)</td>
+                        <td>
+                            <form action="@Url.Action("DeleteCompany")" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@c.Id" />
+                                <button type="submit" class="delete-btn" onclick="return confirm('Удалить компанию?')">
+                                    <i data-lucide="trash-2"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@functions {
+    string GetCompanyTypeName(CompanyType type)
+    {
+        switch (type)
+        {
+            case CompanyType.Developer: return "Застройщик";
+            case CompanyType.Contractor: return "Подрядчик";
+            case CompanyType.ManagementCompany: return "Управляющая компания";
+            default: return type.ToString();
+        }
+    }
+}

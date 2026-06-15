@@ -1,0 +1,27 @@
+﻿@model Diploma.Models.ConstructionObject
+@{
+    ViewBag.Title = "Редактирование объекта";
+    ViewBag.BreadCrumbs = new List<Diploma.Models.BreadCrumb>
+{
+        new Diploma.Models.BreadCrumb("/Admin/Admin/Objects", "Объекты"),
+        new Diploma.Models.BreadCrumb("", "Редактирование")
+    };
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <section class="section-info">
+        <h2>Редактирование объекта</h2>
+        <div class="info-grid">
+            <div class="info-item"><span class="label">Название</span><span class="value">@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Адрес</span><span class="value">@Html.TextBoxFor(m => m.Address, new { @class = "form-control" })</span></div>
+            <div class="info-item"><span class="label">Застройщик</span><span class="value">@Html.DropDownList("DeveloperCompanyId", (SelectList)ViewBag.DeveloperCompanies, new { @class = "form-control" })</span></div>
+        </div>
+    </section>
+    <div class="form-actions">
+        <button type="submit" class="apply-btn"><i data-lucide="save"></i> Сохранить</button>
+        <a href="@Url.Action("ObjectDetails", new { id = Model.Id })" class="btn btn-outline-secondary">Отмена</a>
+    </div>
+}

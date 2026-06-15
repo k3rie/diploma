@@ -1,0 +1,70 @@
+﻿@model Diploma.Models.AdminIndexViewModel
+@using Diploma.Models
+@using Diploma.Resources
+@using Diploma.HtmlHelpers
+
+@{
+    var dashboard = Model.Dashboard;
+}
+
+<div class="row g-3 mb-5">
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card card border-0 shadow-sm h-100">
+            <div class="card-body d-flex flex-column">
+                <div class="stat-value">@dashboard.TotalDefects</div>
+                <div class="stat-label">@Localization.TotalDefects</div>
+                <i data-lucide="alert-triangle" class="stat-icon opacity-25 ms-auto"></i>
+            </div>
+        </div>
+    </div>
+    @foreach (var kvp in dashboard.CountByStatus)
+    {
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card card border-0 shadow-sm h-100 card-status-@kvp.Key.ToLower()">
+                <div class="card-body d-flex flex-column">
+                    <div class="stat-value">@kvp.Value</div>
+                    <div class="stat-label">@kvp.Key</div>
+                    <i data-lucide="@GetStatusIcon(kvp.Key)" class="stat-icon opacity-25 ms-auto"></i>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card card border-0 shadow-sm h-100 card-overdue">
+            <div class="card-body d-flex flex-column">
+                <div class="stat-value">@dashboard.OverdueCount</div>
+                <div class="stat-label">@Localization.Overdue</div>
+                <i data-lucide="clock" class="stat-icon opacity-25 ms-auto"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card card border-0 shadow-sm h-100 card-avgfix">
+            <div class="card-body d-flex flex-column">
+                <div class="stat-value">@(dashboard.AverageFixTime?.ToString("F1") ?? "—")</div>
+                <div class="stat-label">@Localization.Avgfixdays</div>
+                <i data-lucide="timer" class="stat-icon opacity-25 ms-auto"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="defectsTable">
+    @Html.Partial("_DefectsTable", Model.Defects)
+</div>
+
+@functions {
+    string GetStatusIcon(string status)
+    {
+        switch (status)
+        {
+            case "Создан": return "circle";
+            case "Назначен": return "user-check";
+            case "В работе": return "loader";
+            case "Исправлен": return "check-circle";
+            case "Подтверждён": return "check-square";
+            case "Отклонён": return "x-circle";
+            default: return "circle";
+        }
+    }
+}

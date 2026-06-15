@@ -29,5 +29,8 @@ namespace Diploma.Data.Interfaces
         Task<List<Company>> GetContractorCompaniesAsync();
         Task<List<User>> GetUsersByRoleAndCompanyAsync(UserRole role, int? companyId);
         Task UpdateDefectStatusAsync(int defectId, DefectStatus newStatus, int changedByUserId, string comment = null);
+        Task<List<Defect>> GetDefectsByAssignedUserAsync(int userId);
+        Task<List<Defect>> GetAllDefectsAsync();
+
     }
 }

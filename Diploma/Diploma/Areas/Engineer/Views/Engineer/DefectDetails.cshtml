@@ -207,6 +207,15 @@
             </div>
         }
     </section>
+    <section class="section-info">
+        <h2>Добавить комментарий</h2>
+        @using (Html.BeginForm("AddComment", "Engineer", new { defectId = Model.Id }, FormMethod.Post, new { @class = "comment-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <textarea name="message" rows="3" class="form-control" placeholder="Введите ваш комментарий..." required></textarea>
+            <button type="submit" class="apply-btn mt-2"><i data-lucide="send"></i> Отправить</button>
+        }
+    </section>
 </div>
 
 

@@ -2,6 +2,8 @@
 using Diploma.Models;
 using Diploma.Models.DTOs;
 using Diploma.Services.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Diploma.Services
@@ -49,6 +51,15 @@ namespace Diploma.Services
                 user.UpdatedAt = System.DateTime.Now;
                 await _userRepository.UpdateAsync(user);
             }
+        }
+        public async Task<List<User>> GetAllUsersAsync() => await _userRepository.GetAllUsersAsync();
+        public async Task<User> CreateUserAsync(User user) => await _userRepository.CreateUserAsync(user);
+        public async Task DeleteUserAsync(int id) => await _userRepository.DeleteUserAsync(id);
+        public async Task<User> GetUserByIdAsync(int id) => await _userRepository.GetByIdAsync(id);
+        public async Task UpdateUserAsync(User user)
+        {
+            user.UpdatedAt = DateTime.Now;
+            await _userRepository.UpdateAsync(user);
         }
     }
 }

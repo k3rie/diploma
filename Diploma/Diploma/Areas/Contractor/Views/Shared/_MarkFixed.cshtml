@@ -1,0 +1,27 @@
+﻿@model Diploma.Models.DTOs.MarkFixedDto
+@using Diploma.Resources
+@{
+    Layout = null;
+}
+<div class="modal-body-content">
+    @using (Html.BeginForm("MarkFixed", "Contractor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.DefectId)
+        <section class="section-info">
+            <h2>@Localization.UploadAfterFixPhotos</h2>
+            <div class="info-grid" style="grid-template-columns: repeat(1, 1fr)">
+                <div class="info-item">
+                    <span class="label">@Localization.photos</span>
+                    <span class="value">
+                        <input type="file" name="Photos" multiple accept="image/*" />
+                        <small>@Localization.Youcanselectmultiplephotos.</small>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <div class="form-actions-sticky">
+            <button type="submit" class="apply-btn"><i data-lucide="check"></i> @Localization.MarkasFixed</button>
+        </div>
+    }
+</div>

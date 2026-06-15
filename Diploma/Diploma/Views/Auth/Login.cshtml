@@ -41,23 +41,23 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-group">
-                    <label for="Login">Username</label>
+                    <label for="Login">Логин</label>
                     @Html.TextBoxFor(m => m.Login, new
                     {
                         @id = "Login",
-                        @placeholder = "Enter your username",
+                        @placeholder = "Введите логин",
                         @class = "form-control"
                     })
                     @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
-                    <label for="Password">Password</label>
+                    <label for="Password">Пароль</label>
                     <div class="input-wrapper">
                         @Html.PasswordFor(m => m.Password, new
                         {
                             @id = "Password",
-                            @placeholder = "Password",
+                            @placeholder = "Введите пароль",
                             @class = "form-control",
                             autocomplete = "off",
                             autocorrect = "off",
@@ -74,13 +74,13 @@
                 <div class="form-footer">
                     <label class="remember-checkbox">
                         @Html.CheckBoxFor(m => m.RememberMe, new { @id = "RememberMe" })
-                        @Html.LabelFor(m => m.RememberMe, "Remember me")
+                        @Html.LabelFor(m => m.RememberMe, "Запомнить меня")
                     </label>
                 </div>
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <button type="submit" class="signin-button">Sign in</button>
+                <button type="submit" class="signin-button">Войти</button>
             }
         </div>
     </div>

@@ -47,13 +47,18 @@
                         </a>
                     </li>
                 }
-
                 @if (Model.Status == DefectStatus.Fixed)
                 {
                     <li>
                         <a onclick="confirmAndSubmit('@Url.Action("ConfirmDefectFix", "Owner", new { id = Model.Id })')" style="cursor:pointer">
                             <i data-lucide="check-circle"></i>
                             <span class="menu-text">@Localization.ConfirmFix</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="rejectFix('@Url.Action("RejectFix", "Owner", new { defectId = Model.Id })')" style="cursor:pointer">
+                            <i data-lucide="x-circle"></i>
+                            <span class="menu-text">Отклонить</span>
                         </a>
                     </li>
                 }
@@ -79,7 +84,30 @@
                 form.submit();
             }
         }
-
+        function rejectFix(url) {
+            var reason = prompt('Укажите причину отклонения:');
+            if (reason === null) return;
+            if (reason.trim() === '') {
+                alert('Необходимо указать причину.');
+                return;
+            }
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = url;
+            var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            var tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = '__RequestVerificationToken';
+            tokenInput.value = token;
+            form.appendChild(tokenInput);
+            var commentInput = document.createElement('input');
+            commentInput.type = 'hidden';
+            commentInput.name = 'comment';
+            commentInput.value = reason;
+            form.appendChild(commentInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
         function openImage(src) {
             document.getElementById('imageModal').style.display = 'block';
             document.getElementById('modalImage').src = src;

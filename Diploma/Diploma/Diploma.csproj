@@ -207,13 +207,16 @@
     <Compile Include="HtmlHelpers\EnumMultiSelectFor.cs" />
     <Compile Include="HtmlHelpers\ModalPage.cs" />
     <Compile Include="HtmlHelpers\UserIdentityHelper.cs" />
+    <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\BreadCrumb.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Defect.cs" />
     <Compile Include="Models\DefectComment.cs" />
     <Compile Include="Models\DefectMedia.cs" />
     <Compile Include="Models\DefectStatusHistory.cs" />
+    <Compile Include="Models\DTOs\AdminDashboardDto.cs" />
     <Compile Include="Models\DTOs\AssignDefectDto.cs" />
+    <Compile Include="Models\DTOs\ContractorDashboardDto.cs" />
     <Compile Include="Models\DTOs\DefectCreateDto.cs" />
     <Compile Include="Models\DTOs\EngineerDashboardDto.cs" />
     <Compile Include="Models\DTOs\LoginResultDto.cs" />
@@ -238,12 +241,16 @@
       <DependentUpon>Localization.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DefectService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
+    <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\IDefectService.cs" />
     <Compile Include="Services\Interfaces\INotificationService.cs" />
+    <Compile Include="Services\Interfaces\IObjectService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\ObjectService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +346,26 @@
     <Content Include="Areas\Engineer\Views\Shared\_Alerts.cshtml" />
     <Content Include="Areas\Engineer\Views\Shared\_NotificationBadge.cshtml" />
     <Content Include="Areas\Engineer\Views\Shared\_MarkFixed.cshtml" />
+    <Content Include="Areas\Contractor\Views\Shared\_DefectsLayout.cshtml" />
+    <Content Include="Areas\Contractor\Views\Contractor\Defects.cshtml" />
+    <Content Include="Areas\Contractor\Views\Contractor\DefectDetails.cshtml" />
+    <Content Include="Areas\Contractor\Views\Shared\_MarkFixed.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DefectsTable.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\UserDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Companies.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateCompany.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\CompanyDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditCompany.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Objects.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateObject.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ObjectDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditObject.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreatePremise.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditPremise.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DashboardContent.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\async-search.js" />
@@ -372,6 +399,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Shared\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
